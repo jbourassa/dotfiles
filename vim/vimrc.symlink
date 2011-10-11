@@ -1,0 +1,86 @@
+set background=dark 
+"Remove toolbar
+if has("gui_running")
+	set guioptions-=T
+endif
+colorscheme ir_black 
+syntax on
+hi CursorLine guibg=#2c2c2c
+
+set nobackup
+set noswapfile
+set nojoinspaces
+set nocompatible
+
+set number
+set showmode
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set hidden
+set wildmenu
+set wildmode=longest:full
+set cursorline
+
+
+filetype on
+filetype plugin on
+filetype indent on
+set backspace=2
+set vb
+runtime macros/matchit.vim
+
+set encoding=utf-8
+set fileencoding=utf-8
+set hlsearch
+set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+set history=100
+set scrolloff=8
+set incsearch
+set ignorecase
+set gdefault " Always search/replace globally
+
+"php settings
+au! BufRead,BufNewFile *.php setfiletype php
+au! BufRead,BufNewFile *.ctp setfiletype php
+let php_htmlInStrings = 1
+
+"autocomplete
+""let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+"Key bidings
+let mapleader = ","
+let g:mapleader = ","
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+nnoremap <esc> :noh<return><esc>
+"Moving around windows (taken from Derek Wyatt)
+noremap <silent> ,h :wincmd h<cr>
+noremap <silent> ,j :wincmd j<cr>
+noremap <silent> ,k :wincmd k<cr>
+noremap <silent> ,l :wincmd l<cr>
+noremap <silent> ,T :TlistToggle<CR>
+
+
+"TList config
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+let Tlist_Inc_Winwidth = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Enable_Fold_Column = 0
+let tlist_php_settings = 'php;c:class;d:constant;f:function'
+
+"Don't need f1 for help
+nmap <F1> <nop>
+
+"Unmap some unsued buffer command to use command-t with buggers (<Leader>b)
+autocmd VimEnter *  unmap <Leader>bundo
+autocmd VimEnter *  unmap <Leader>bw
+autocmd VimEnter *  unmap <Leader>bb
+autocmd VimEnter *  unmap <Leader>bf
+autocmd VimEnter *  unmap <Leader>bun
+autocmd VimEnter *  unmap <Leader>bd
+autocmd VimEnter *  unmap <Leader>ba
+
+"2 spaves for ruby tabs
+autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et

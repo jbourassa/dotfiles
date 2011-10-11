@@ -1,0 +1,24 @@
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+[user]
+	email = jimmy.bourassa@hooktstudios.com
+[alias]
+        st = status
+        ci = commit
+        br = branch
+        co = checkout
+        df = diff
+        lg = log -p
+[advice]
+	statusHints = false
+[branch]
+	autosetupmerge = true
+[push]
+	default = tracking
+[core]
+	excludesfile = /Users/jbourassa/.gitignore
+	editor = /usr/bin/vim
+

@@ -82,5 +82,5 @@ autocmd VimEnter *  unmap <Leader>bun
 autocmd VimEnter *  unmap <Leader>bd
 autocmd VimEnter *  unmap <Leader>ba
 
-"2 spaves for ruby tabs
+"2 spaces for ruby tabs
 autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et

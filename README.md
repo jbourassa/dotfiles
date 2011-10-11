@@ -1,5 +1,5 @@
 # Yet another dotfiles repo
-I'm not particularly pround of my current dotfiles setup but I wanted to make sure I don't loose anythong on accident so here here it is : yet anoter dotfiles repo!
+I'm not particularly proud of my current dotfiles setup but I wanted to make sure I don't loose anything on accident so, here it is : yet anoter dotfiles repo!
 
 Feel free to copy whatver you may like.
 

@@ -5,6 +5,7 @@
 	branch = auto
 [user]
 	email = jimmy.bourassa@hooktstudios.com
+	name = Jimmy Bourassa
 [alias]
         st = status
         ci = commit
@@ -19,6 +20,12 @@
 [push]
 	default = tracking
 [core]
-	excludesfile = /Users/jbourassa/.gitignore
+	excludesfile = ~/.gitignore
 	editor = /usr/bin/vim
 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

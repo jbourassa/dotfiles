@@ -3,7 +3,7 @@ set background=dark
 if has("gui_running")
 	set guioptions-=T
 endif
-colorscheme ir_black 
+colorscheme ir_black
 syntax on
 hi CursorLine guibg=#2c2c2c
 
@@ -18,9 +18,13 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set hidden
+
 set wildmenu
 set wildmode=longest:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+
 set cursorline
+set list listchars=tab:\ \ ,trail:·
 
 
 filetype on
@@ -41,9 +45,15 @@ set ignorecase
 set gdefault " Always search/replace globally
 
 "php settings
-au! BufRead,BufNewFile *.php setfiletype php
-au! BufRead,BufNewFile *.ctp setfiletype php
+au BufRead,BufNewFile *.php setfiletype php
+au BufRead,BufNewFile *.ctp setfiletype php
 let php_htmlInStrings = 1
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+" md, markdown, and mk are markdown and define buffer-local preview
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 "autocomplete
 ""let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
@@ -52,13 +62,17 @@ let php_htmlInStrings = 1
 let mapleader = ","
 let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-nnoremap <esc> :noh<return><esc>
+nnoremap <esc> :noh<return>
 "Moving around windows (taken from Derek Wyatt)
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
 noremap <silent> ,k :wincmd k<cr>
 noremap <silent> ,l :wincmd l<cr>
 noremap <silent> ,T :TlistToggle<CR>
+
+"Easy escape
+inoremap <C-K> <ESC>
+noremap <C-K> <ESC>
 
 
 "TList config
@@ -73,7 +87,7 @@ let tlist_php_settings = 'php;c:class;d:constant;f:function'
 "Don't need f1 for help
 nmap <F1> <nop>
 
-"Unmap some unsued buffer command to use command-t with buggers (<Leader>b)
+"Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo
 autocmd VimEnter *  unmap <Leader>bw
 autocmd VimEnter *  unmap <Leader>bb
@@ -84,3 +98,6 @@ autocmd VimEnter *  unmap <Leader>ba
 
 "2 spaces for ruby tabs
 autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et
+
+set exrc    " enable per-directory .vimrc files
+set secure  " disable unsafe commands in local .vimrc files"

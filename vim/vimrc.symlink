@@ -24,8 +24,7 @@ set wildmode=longest:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 set cursorline
-set list listchars=tab:\ \ ,trail:·
-
+set list listchars=tab:»\ ,trail:·
 
 filetype on
 filetype plugin on

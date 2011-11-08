@@ -20,15 +20,15 @@ set softtabstop=2
 set hidden
 
 set wildmenu
-set wildmode=longest:full
+set wildmode=longest,full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 set cursorline
+
 set list listchars=tab:»\ ,trail:·
 
 filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 set backspace=2
 set vb
 runtime macros/matchit.vim
@@ -37,10 +37,13 @@ set encoding=utf-8
 set fileencoding=utf-8
 set hlsearch
 set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+set laststatus=2
 set history=100
 set scrolloff=8
 set incsearch
 set ignorecase
+"set infercase " Gives case sensitive autocompletion
+set smartcase
 set gdefault " Always search/replace globally
 
 "php settings

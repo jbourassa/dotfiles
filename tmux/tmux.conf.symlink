@@ -12,8 +12,19 @@ set -g default-terminal "screen-256color"
 
 # add pbcopy / pbpaste support
 # see https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-set-option -g default-command "reattach-to-user-namespace -l bash"
+set-option -g default-command "reattach-to-user-namespace -l /bin/zsh"
 
+bind -t vi-copy v begin-selection
 
-# stolen from remip
-# set-window-option -g mode-mouse on
+# Copy current selection to buffer (and exit copy mode)
+bind -t vi-copy y copy-selection
+
+bind O source ~/.tmux.conf
+
+# In normal mode, <prefix>-p paste the current buffer as-is
+unbind p
+bind p paste-buffer
+
+# <prefix>-y sends the buffer to pbcopy
+unbind y
+bind y save-buffer /tmp/tmux-buffer \; run-shell "reattach-to-user-namespace -l zsh -c 'cat /tmp/tmux-buffer|pbcopy'"

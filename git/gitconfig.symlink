@@ -12,6 +12,7 @@
         br = branch
         co = checkout
         df = diff
+        pr = pull --rebase
         lg = log -p
 [advice]
 	statusHints = false

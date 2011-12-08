@@ -25,6 +25,10 @@ bind O source ~/.tmux.conf
 unbind p
 bind p paste-buffer
 
+# Easier scrolling
+unbind u
+bind u copy-mode
+
 # <prefix>-y sends the buffer to pbcopy
 unbind y
 bind y save-buffer /tmp/tmux-buffer \; run-shell "reattach-to-user-namespace -l zsh -c 'cat /tmp/tmux-buffer|pbcopy'"

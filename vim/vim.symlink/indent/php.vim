@@ -1265,5 +1265,3 @@ function! GetPhpIndent()
     let b:PHP_CurrentIndentLevel = ind
     return ind
 endfunction
-
-" vim: set ts=8 sw=4 sts=4:

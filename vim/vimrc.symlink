@@ -56,9 +56,6 @@ let php_htmlInStrings = 1
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
-"markdown filetype file
-au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=mkd
-
 "Key bidings
 let mapleader = ","
 let g:mapleader = ","

@@ -16,3 +16,9 @@
 [submodule "vim/vim.symlink/bundle/nerdcommenter"]
 	path = vim/vim.symlink/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/vim.symlink/bundle/buffkill"]
+	path = vim/vim.symlink/bundle/buffkill
+	url = https://github.com/vim-scripts/bufkill.vim
+[submodule "vim/vim.symlink/bundle/delimitMate"]
+	path = vim/vim.symlink/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git

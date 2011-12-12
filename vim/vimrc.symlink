@@ -59,15 +59,11 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 "markdown filetype file
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=mkd
 
-
-"autocomplete
-""let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-
 "Key bidings
 let mapleader = ","
 let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-nnoremap <esc> :noh<return>
+nnoremap <ESC> :noh<return>
 "Moving around windows (taken from Derek Wyatt)
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
@@ -79,6 +75,8 @@ noremap <silent> ,T :TlistToggle<CR>
 inoremap <C-K> <ESC>
 noremap <C-K> <ESC>
 
+"Faster prev-buffer
+nnoremap <leader><leader> <c-^>
 
 "TList config
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"

@@ -10,3 +10,9 @@
 [submodule "vim/vim.symlink/bundle/markdown"]
 	path = vim/vim.symlink/bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
+[submodule "vim/vim.symlink/bundle/ack"]
+	path = vim/vim.symlink/bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/vim.symlink/bundle/nerdcommenter"]
+	path = vim/vim.symlink/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git

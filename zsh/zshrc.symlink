@@ -31,6 +31,7 @@ source $ZSH/oh-my-zsh.sh
 # My custom options
 unsetopt correct_all
 alias m=mvim
+alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
 
 
 # Use some default convenient keys even when in vi mode

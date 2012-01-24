@@ -53,8 +53,8 @@ au BufRead,BufNewFile *.php setfiletype php
 au BufRead,BufNewFile *.ctp setfiletype php
 let php_htmlInStrings = 1
 
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+" Thorfile, Rakefile, Vagrantfile and Gemfile Guardfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
 
 "Key bidings
 let mapleader = ","

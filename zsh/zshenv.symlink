@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
+export PATH=$(brew --prefix php)/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
 
 # Let RVM kick in
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

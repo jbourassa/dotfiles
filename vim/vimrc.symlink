@@ -48,6 +48,9 @@ set infercase " Gives case sensitive autocompletion
 set smartcase
 set gdefault " Always search/replace globally
 
+" Typing :W -> :w
+cnoreabbrev W w
+
 "php settings
 au BufRead,BufNewFile *.php setfiletype php
 au BufRead,BufNewFile *.ctp setfiletype php

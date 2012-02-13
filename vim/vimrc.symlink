@@ -23,7 +23,7 @@ set hidden
 
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store
 
 set cursorline
 
@@ -38,7 +38,7 @@ runtime macros/matchit.vim
 set encoding=utf-8
 set fileencoding=utf-8
 set hlsearch
-set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+set stl=%f\ %m\ %r\ L:\ %l/%L[%p%%]\ C:\ %c\ Buf:\ #%n
 set laststatus=2
 set history=100
 set scrolloff=8
@@ -93,6 +93,7 @@ nmap <F1> <nop>
 nmap <silent> <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_follow_symlinks = 1
 
 "Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo

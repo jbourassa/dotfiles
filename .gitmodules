@@ -28,3 +28,9 @@
 [submodule "vim/vim.symlink/bundle/minibufexpl"]
 	path = vim/vim.symlink/bundle/minibufexpl
 	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "vim/vim.symlink/bundle/surround"]
+	path = vim/vim.symlink/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/vim.symlink/bundle/supertab"]
+	path = vim/vim.symlink/bundle/supertab
+	url = https://github.com/ervandew/supertab.git

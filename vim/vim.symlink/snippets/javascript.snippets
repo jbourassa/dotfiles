@@ -72,55 +72,7 @@ snippet get
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
-snippet oc1
-	var http = require('http');
-
-	http.createServer(function(req, res){
-		res.writeHead(200);
-		res.end('Hello, OpenCode');
-	}).listen(1234);
-snippet oc2
-	// Static file serving
-	if(req.url == '/')    var file = '/index.html';
-	else                  var file = req.url;
-
-	console.log('Serving file ' + req.url);
-snippet oc3
-	if(err){
-		res.writeHead(500);
-		res.end(err + "\n");
-		return;
-	}
-snippet oc4
-	var channel = '/chat';
-	
-	var name = prompt('Ton nom?', 'D Natural');
-snippet oc5
-	console.log(msg);
-	$messages.append([
-		'<p>',
-			'<span class="name">'+ msg.name +'</span>',
-			'<span class="time">'+ msg.time +'</span>',
-			'<span class="text">'+ msg.text +'</span>',
-		'</p>'
-	].join(''));
-	$messages.prop({scrollTop: $messages[0].scrollHeight});
-snippet oc6
-	$(function(){
-		$messages = $('#messages');
-
-		$('#speak').submit(function(e){
-			e.preventDefault();
-			var now = new Date();
-			var $text_input = $(this).find('input[type=text]');
-			var msg = {
-				name: name,
-				time: now.getHours() + ':' + now.getMinutes(),
-				text: $text_input.val()
-			};
-
-			client.publish(channel, msg);
-			$text_input.val('');
-
-		});
-	});
+snippet cl
+	console.log(${1:stuff});
+snippet jq
+	$('${1:selector}')${2}

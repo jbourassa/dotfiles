@@ -23,7 +23,7 @@ set hidden
 
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store,*.pyc
 
 set cursorline
 
@@ -69,7 +69,10 @@ noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
 noremap <silent> ,k :wincmd k<cr>
 noremap <silent> ,l :wincmd l<cr>
-noremap <silent> ,T :TlistToggle<CR>
+
+" Tap navigation
+noremap <silent> <D-A-Left> :tabp<CR>
+noremap <silent> <D-A-Right> :tabp<CR>
 
 "Easy escape
 inoremap <C-K> <ESC>

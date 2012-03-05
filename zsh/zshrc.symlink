@@ -32,6 +32,8 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 alias m=mvim
 alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias iplocal="ipconfig getifaddr en1"
 
 
 # Use some default convenient keys even when in vi mode

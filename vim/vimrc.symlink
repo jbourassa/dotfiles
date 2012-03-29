@@ -97,6 +97,7 @@ nmap <silent> <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_switch_buffer = 0
 
 "Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo

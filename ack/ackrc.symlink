@@ -4,3 +4,4 @@
 --type-add=css=.sass,.less,.scss
 --type-add=php=.ctp
 --type-set=csv=.csv
+--type-set=asp=.asp

@@ -16,9 +16,7 @@ set nocompatible
 
 set number
 set showmode
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=2 shiftwidth=2 softtabstop=2
 set hidden
 
 set wildmenu
@@ -63,20 +61,20 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile
 let mapleader = ","
 let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-nnoremap <ESC> :noh<return>
+noremap <silent> <Space> :silent noh<Bar>echo<CR>
 "Moving around windows (taken from Derek Wyatt)
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
 noremap <silent> ,k :wincmd k<cr>
 noremap <silent> ,l :wincmd l<cr>
 
-" Tap navigation
+" Tab navigation
 noremap <silent> <D-A-Left> :tabp<CR>
 noremap <silent> <D-A-Right> :tabp<CR>
 
-"Easy escape
-inoremap <C-K> <ESC>
-noremap <C-K> <ESC>
+" Indent with tab in visual mode
+vnoremap <Tab> >gv|
+vnoremap <S-Tab> <gv
 
 "Faster prev-buffer
 nnoremap <leader><leader> <c-^>

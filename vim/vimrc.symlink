@@ -4,10 +4,11 @@ set background=dark
 "Remove toolbar
 if has("gui_running")
 	set guioptions-=T
+	nmap <C-Tab> :maca _cycleWindows:<CR>
+	nmap <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
 endif
-colorscheme ir_black
+colorscheme Tomorrow-Night-Bright
 syntax on
-hi CursorLine guibg=#2c2c2c
 
 set nobackup
 set noswapfile
@@ -70,7 +71,7 @@ noremap <silent> ,l :wincmd l<cr>
 
 " Tab navigation
 noremap <silent> <D-A-Left> :tabp<CR>
-noremap <silent> <D-A-Right> :tabp<CR>
+noremap <silent> <D-A-Right> :tabn<CR>
 
 " Indent with tab in visual mode
 vnoremap <Tab> >gv|
@@ -78,6 +79,8 @@ vnoremap <S-Tab> <gv
 
 "Faster prev-buffer
 nnoremap <leader><leader> <c-^>
+"Faster save
+nnoremap <silent> <leader>w :w<CR>
 
 "TList config
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
@@ -97,6 +100,8 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_switch_buffer = 0
 
+let g:miniBufExplCheckDupeBufs = 0 "Faster miniBufExpl
+
 "Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo
 autocmd VimEnter *  unmap <Leader>bw
@@ -111,3 +116,7 @@ autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et
 
 set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"
+
+" Set lang for macvim also, apparently system locale isnt loaded by default
+lang fr_CA.UTF-8
+

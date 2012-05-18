@@ -2,6 +2,6 @@
 --type-add=html=.html.erb,.html.haml
 --type-add=js=.js.erb
 --type-add=css=.sass,.less,.scss
---type-add=php=.ctp
+--type-add=php=.ctp,.inc,.module,.install
 --type-set=csv=.csv
 --type-set=asp=.asp

@@ -37,3 +37,6 @@
 [submodule "vim/vim.symlink/bundle/syntastic"]
 	path = vim/vim.symlink/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/vim.symlink/bundle/bexec"]
+	path = vim/vim.symlink/bundle/bexec
+	url = https://github.com/vim-scripts/Bexec.git

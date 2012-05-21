@@ -4,8 +4,8 @@ set background=dark
 "Remove toolbar
 if has("gui_running")
 	set guioptions-=T
-	nmap <C-Tab> :maca _cycleWindows:<CR>
-	nmap <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
+	nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
+	nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
 endif
 colorscheme Tomorrow-Night-Bright
 syntax on

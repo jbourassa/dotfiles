@@ -40,3 +40,6 @@
 [submodule "vim/vim.symlink/bundle/bexec"]
 	path = vim/vim.symlink/bundle/bexec
 	url = https://github.com/vim-scripts/Bexec.git
+[submodule "vim/vim.symlink/bundle/vim-repeat"]
+	path = vim/vim.symlink/bundle/vim-repeat
+	url = git://github.com/tpope/vim-repeat.git

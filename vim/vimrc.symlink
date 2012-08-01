@@ -119,6 +119,8 @@ autocmd VimEnter *  unmap <Leader>bc
 
 "2 spaces for ruby tabs
 autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et
+"4 spaces for markdown
+autocmd FileType markdown setlocal sw=4 sts=4 et
 
 set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"

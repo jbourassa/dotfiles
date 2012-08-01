@@ -38,6 +38,15 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en1"
 alias be="bundle exec"
 alias mysql="mysql -u root"
+function gitx()
+{
+  if [ -z "$1" ]; then
+    DIR='.'
+  else
+    DIR=$1
+  fi
+  open -a GitX $DIR
+}
 
 
 # Use some default convenient keys even when in vi mode

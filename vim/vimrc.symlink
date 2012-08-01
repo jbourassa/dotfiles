@@ -20,6 +20,9 @@ set showmode
 set tabstop=2 shiftwidth=2 softtabstop=2
 set hidden
 
+set binary
+set noeol
+
 set wildmenu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store,*.pyc
@@ -40,7 +43,7 @@ set hlsearch
 set stl=%f\ %m\ %r\ L:\ %l/%L[%p%%]\ C:\ %c\ Buf:\ #%n
 set laststatus=2
 set history=100
-set scrolloff=8
+set scrolloff=5
 set incsearch
 set ignorecase
 set infercase " Gives case sensitive autocompletion
@@ -127,4 +130,3 @@ set secure  " disable unsafe commands in local .vimrc files"
 
 " Set lang for macvim also, apparently system locale isnt loaded by default
 lang fr_CA.UTF-8
-

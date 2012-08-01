@@ -24,7 +24,7 @@ CASE_SENSITIVE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode  osx)
+plugins=(git osx bundler gem pow)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -36,6 +36,8 @@ alias v=vim
 alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en1"
+alias be="bundle exec"
+alias mysql="mysql -u root"
 
 
 # Use some default convenient keys even when in vi mode

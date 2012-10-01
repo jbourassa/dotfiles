@@ -1,4 +1,4 @@
-export PATH=$(brew --prefix php)/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/pear/bin
+export PATH=/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/pear/bin:/usr/local/share/npm/bin
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 
 # Let RVM kick in

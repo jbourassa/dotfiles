@@ -31,8 +31,7 @@ source $ZSH/oh-my-zsh.sh
 # My custom options
 unsetopt correct_all
 alias m=mvim
-alias vim="mvim -v"
-alias v=vim
+ alias v=vim
 alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en1"

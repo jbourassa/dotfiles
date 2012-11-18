@@ -49,3 +49,6 @@
 [submodule "vim/vim.symlink/bundle/vim-visual-star-search"]
 	path = vim/vim.symlink/bundle/vim-visual-star-search
 	url = git://github.com/bronson/vim-visual-star-search.git
+[submodule "vim/vim.symlink/bundle/html.vim"]
+	path = vim/vim.symlink/bundle/html.vim
+	url = git://github.com/xenoterracide/html.vim.git

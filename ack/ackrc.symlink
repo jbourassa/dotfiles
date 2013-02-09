@@ -5,3 +5,5 @@
 --type-add=php=.ctp,.inc,.module,.install
 --type-set=csv=.csv
 --type-set=asp=.asp
+--type-set=svg=.svg
+--type-set=Gemfile=Gemfile

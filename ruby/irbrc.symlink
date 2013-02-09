@@ -1,7 +1,13 @@
 require "rubygems"
+require 'irb/ext/save-history'
 require "irb/completion"
-require "wirble"
 require "awesome_print"
-Wirble.init
-Wirble.colorize
+require "active_support/all"
 IRB.conf[:AUTO_INDENT]=true
+
+class Object
+  # what methods are ghere that are not present on basic objects?
+  def interesting_methods
+    (self.methods - Object.new.methods).sort
+  end
+end

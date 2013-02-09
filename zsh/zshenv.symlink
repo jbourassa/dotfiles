@@ -4,12 +4,20 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/p
 brew list | grep -o -q php54 && export PATH=$(brew --prefix php54)/bin:$PATH
 
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
+export PGDATA=/usr/local/var/postgres
 
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+export EDITOR=mvim
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Virtualenv wrapper
-if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
-  export WORKON_HOME=~/.virtualenvs
-  source /usr/local/share/python/virtualenvwrapper.sh
-fi
+# if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
+#   export WORKON_HOME=~/.virtualenvs
+#   source /usr/local/share/python/virtualenvwrapper.sh
+# fi
+
+
+# Faster ruby!
+export RUBY_GC_MALLOC_LIMIT=60000000
+export RUBY_FREE_MIN=200000

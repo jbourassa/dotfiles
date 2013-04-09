@@ -3,11 +3,31 @@ require 'irb/ext/save-history'
 require "irb/completion"
 require "awesome_print"
 require "active_support/all"
-IRB.conf[:AUTO_INDENT]=true
+
+IRB.conf[:PROMPT_MODE] = :SIMPLE
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:EVAL_HISTORY] = 1000
+IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:HISTORY_FILE] = File::expand_path("~/.irbhistory")
+ARGV.concat %w(--prompt-mode simple)
+
+AwesomePrint.irb!
 
 class Object
-  # what methods are ghere that are not present on basic objects?
   def interesting_methods
-    (self.methods - Object.new.methods).sort
+    case self.class
+    when Class
+      self.public_methods.sort - Object.public_methods
+    when Module
+      self.public_methods.sort - Module.public_methods
+    else
+      self.public_methods.sort - Object.new.public_methods
+    end
   end
+end
+
+begin
+  require 'interactive_editor'
+rescue LoadError => err
+  warn "Couldn't load interactive_editor: #{err}"
 end

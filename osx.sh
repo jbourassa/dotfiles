@@ -15,3 +15,5 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 
 # No shadow in screens
 defaults write com.apple.screencapture disable-shadow -bool true
+
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true

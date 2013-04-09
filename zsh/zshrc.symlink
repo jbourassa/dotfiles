@@ -29,7 +29,7 @@ plugins=(git osx bundler gem pow)
 source $ZSH/oh-my-zsh.sh
 
 # My custom options
-unsetopt correct_all
+unsetopt correct
 alias m=mvim
 alias v=vim
 alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
@@ -39,6 +39,8 @@ alias be="bundle exec"
 alias mysql="mysql -u root"
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias fr="bundle exec foreman run"
+alias frp="bundle exec foreman run padrino rake"
 
 # Use some default convenient keys even when in vi mode
 bindkey "^r" history-incremental-search-backward

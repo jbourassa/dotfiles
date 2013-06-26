@@ -22,7 +22,7 @@
 	default = tracking
 [core]
 	excludesfile = ~/.gitignore
-	editor = /usr/bin/vim
+	editor = vim
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"

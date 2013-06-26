@@ -6,4 +6,8 @@
 --type-set=csv=.csv
 --type-set=asp=.asp
 --type-set=svg=.svg
---type-set=Gemfile=Gemfile
+--type-set=log=.log
+--type-set=pyc=.pyc
+--no-log
+--no-pyc
+--ignore-dir=tmp

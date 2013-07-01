@@ -1,4 +1,45 @@
-call pathogen#infect()
+" Init vundle
+set nocompatible
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+Bundle 'bufkill.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-endwise'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-repeat'
+Bundle 'bronson/vim-visual-star-search'
+
+Bundle 'vim-scripts/Bexec'
+
+" Buggy recently
+" Bundle 'ervandew/supertab'
+" Try to replace with...
+Bundle 'Valloric/YouCompleteMe'
+
+Bundle 'scrooloose/syntastic'
+Bundle 'pangloss/vim-javascript'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/gem-ctags'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-bundler'
+
+
+Bundle 'avakhov/vim-yaml'
+Bundle 'xenoterracide/html.vim'
+" Bundle 'kchmck/vim-coffee-script'
+filetype plugin indent on
 
 set background=dark
 "Remove toolbar
@@ -11,18 +52,15 @@ endif
 colorscheme Tomorrow-Night-Bright
 syntax on
 
+set binary noeol
 set nobackup
 set noswapfile
 set nojoinspaces
-set nocompatible
 
 set number
 set showmode
-set tabstop=2 shiftwidth=2 softtabstop=2
+set tabstop=2 shiftwidth=2 softtabstop=2 et
 set hidden
-
-set binary
-set noeol
 
 set wildmenu
 set wildmode=list:longest,list:full
@@ -99,6 +137,9 @@ let Tlist_Process_File_Always = 1
 let Tlist_Enable_Fold_Column = 0
 let tlist_php_settings = 'php;c:class;d:constant;f:function'
 
+"NERDTree
+let NERDTreeIgnore = ['\.pyc$']
+
 "Don't need f1 for help
 nmap <F1> <nop>
 
@@ -121,8 +162,6 @@ autocmd VimEnter *  unmap <Leader>ba
 autocmd VimEnter *  unmap <Leader>bx
 autocmd VimEnter *  unmap <Leader>bc
 
-"2 spaces for ruby tabs
-autocmd FileType ruby,eruby,yaml setlocal sw=2 sts=2 et
 "4 spaces for markdown
 autocmd FileType markdown setlocal sw=4 sts=4 et
 
@@ -131,3 +170,9 @@ set secure  " disable unsafe commands in local .vimrc files"
 
 " Set lang for macvim also, apparently system locale isnt loaded by default
 lang fr_CA.UTF-8
+
+
+" Powerline
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+set guifont=Droid\ Sans\ Mono\ for\ Powerline
+set noshowmode

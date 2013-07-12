@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/pear/bin:/usr/local/share/npm/bin
+export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/pear/bin:/usr/local/share/npm/bin
 
 # PHP binaries path
 brew list | grep -o -q php54 && export PATH=$(brew --prefix php54)/bin:$PATH

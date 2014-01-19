@@ -14,6 +14,7 @@
         df = diff
         pr = pull --rebase
         lg = log -p
+        prs = !git stash && git pr && git stash pop
 [advice]
 	statusHints = false
 [branch]

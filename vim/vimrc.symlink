@@ -41,7 +41,7 @@ Bundle 'tpope/vim-bundler'
 Bundle 'avakhov/vim-yaml'
 Bundle 'xenoterracide/html.vim'
 Bundle 'othree/javascript-libraries-syntax.vim'
-" Bundle 'kchmck/vim-coffee-script'
+Bundle 'bling/vim-airline'
 
 filetype plugin indent on
 
@@ -192,9 +192,9 @@ set secure  " disable unsafe commands in local .vimrc files"
 lang fr_CA.UTF-8
 
 
-" Powerline
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+" Airline
 set guifont=Droid\ Sans\ Mono\ for\ Powerline
+let g:airline_powerline_fonts = 1
 set noshowmode
 
 " html validation is useless since I never edit a full regular html page

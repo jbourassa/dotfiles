@@ -19,17 +19,60 @@ bind -t vi-copy v begin-selection
 # Copy current selection to buffer (and exit copy mode)
 bind -t vi-copy y copy-selection
 
-bind O source ~/.tmux.conf
+bind r source ~/.tmux.conf
 
 # In normal mode, <prefix>-p paste the current buffer as-is
 unbind p
 bind p paste-buffer
 
-# Easier scrolling
-unbind u
-bind u copy-mode
-
 # <prefix>-y sends the buffer to pbcopy
 unbind y
 bind y save-buffer /tmp/tmux-buffer \; run-shell "reattach-to-user-namespace -l zsh -c 'cat /tmp/tmux-buffer|pbcopy'"
-setw -g mode-mouse on
+
+
+# reload tmux config
+unbind r
+bind r \
+    source-file ~/.tmux.conf \;\
+    display 'Reloaded tmux config.'
+
+# Fast escape
+set -s escape-time 0
+
+set -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+
+# Toggle mouse on
+bind m \
+    set -g mode-mouse on \;\
+    set -g mouse-resize-pane on \;\
+    set -g mouse-select-pane on \;\
+    set -g mouse-select-window on \;\
+    display 'Mouse: ON'
+
+# Toggle mouse off
+bind M \
+    set -g mode-mouse off \;\
+    set -g mouse-resize-pane off \;\
+    set -g mouse-select-pane off \;\
+    set -g mouse-select-window off \;\
+    display 'Mouse: OFF'
+
+
+# set-window-option -g automatic-rename off
+set-window-option -g base-index 1
+
+
+# Status line
+set-option -g status-right "" # No status right
+set -g status-bg colour232
+set -g status-fg white
+set -g status-bg colour232
+set-window-option -g window-status-current-attr bold
+set-window-option -g window-status-format '#[fg=yellow,bold]#I#[fg=green,bold]:#[fg=default,bold]#W '
+
+set -g status-bg colour234
+set-window-option -g window-status-current-bg colour236
+set -g window-status-current-format "#[fg=yellow,bold]#I#[fg=green,bg=colour236,bold]:#[fg=white,bg=colour236,bold]#W "

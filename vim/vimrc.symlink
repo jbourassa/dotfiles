@@ -14,6 +14,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
 Bundle 'Raimondi/delimitMate'
+Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-abolish'
 Bundle 'bronson/vim-visual-star-search'
@@ -39,7 +40,9 @@ Bundle 'tpope/vim-bundler'
 
 Bundle 'avakhov/vim-yaml'
 Bundle 'xenoterracide/html.vim'
+Bundle 'othree/javascript-libraries-syntax.vim'
 " Bundle 'kchmck/vim-coffee-script'
+
 filetype plugin indent on
 
 set background=dark
@@ -49,6 +52,7 @@ if has("gui_running")
 	nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
 	nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
 	set balloondelay=100000 " Long balloon to avoir huge tooltip in ruby files
+	set guioptions+=c
 endif
 colorscheme Tomorrow-Night-Bright
 syntax on
@@ -89,6 +93,7 @@ set ignorecase
 set infercase " Gives case sensitive autocompletion
 set smartcase
 set gdefault " Always search/replace globally
+set nostartofline
 
 " Typing :W -> :w
 cnoreabbrev W w
@@ -101,11 +106,15 @@ let php_htmlInStrings = 1
 " Thorfile, Rakefile, Vagrantfile and Gemfile Guardfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
 
+au BufRead,BufNewFile *.js.tpl set ft=javascript
+
 "Key bidings
 let mapleader = ","
 let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F3>
 "Moving around windows (taken from Derek Wyatt)
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
@@ -152,6 +161,16 @@ let g:ctrlp_switch_buffer = 0
 
 let g:miniBufExplCheckDupeBufs = 0 "Faster miniBufExpl
 
+" meta-p/P without killing regular accents
+nmap π <Plug>yankstack_substitute_older_paste
+xmap π <Plug>yankstack_substitute_older_paste
+imap π <Plug>yankstack_substitute_older_paste
+nmap ∏ <Plug>yankstack_substitute_newer_paste
+xmap ∏ <Plug>yankstack_substitute_newer_paste
+imap ∏ <Plug>yankstack_substitute_newer_paste
+
+imap jj <Esc>
+
 "Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo
 autocmd VimEnter *  unmap <Leader>bw
@@ -177,3 +196,14 @@ lang fr_CA.UTF-8
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 set guifont=Droid\ Sans\ Mono\ for\ Powerline
 set noshowmode
+
+" html validation is useless since I never edit a full regular html page
+let g:syntastic_html_checkers=[]
+
+" stolen from Thoughtbot
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif

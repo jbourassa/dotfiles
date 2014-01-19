@@ -15,6 +15,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-abolish'
 Bundle 'bronson/vim-visual-star-search'
 
 Bundle 'vim-scripts/Bexec'

@@ -48,11 +48,11 @@ filetype plugin indent on
 set background=dark
 "Remove toolbar
 if has("gui_running")
-	set guioptions-=T
-	nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
-	nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
-	set balloondelay=100000 " Long balloon to avoir huge tooltip in ruby files
-	set guioptions+=c
+  set guioptions-=T
+  nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
+  nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
+  set balloondelay=100000 " Long balloon to avoir huge tooltip in ruby files
+  set guioptions+=c
 endif
 colorscheme Tomorrow-Night-Bright
 syntax on

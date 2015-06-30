@@ -1,20 +1,21 @@
-export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH:$HOME/pear/bin:/usr/local/share/npm/bin
+export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
 
 # PHP binaries path
-brew list | grep -o -q php54 && export PATH=$(brew --prefix php54)/bin:$PATH
+brew list | grep -o -q php55 && export PATH=$(brew --prefix php55)/bin:$PATH
 
-export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
+export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH:/usr/local/share/npm/lib/node_modules
 export PGDATA=/usr/local/var/postgres
 
 export PATH=$HOME/.rbenv/bin:$PATH
 export EDITOR=mvim
 
+# When using Postgres.app
+PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Virtualenv wrapper
-# if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
-#   export WORKON_HOME=~/.virtualenvs
-#   source /usr/local/share/python/virtualenvwrapper.sh
-# fi
-
-
+ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+   export WORKON_HOME=~/.virtualenvs
+   source /usr/local/bin/virtualenvwrapper.sh
+ fi

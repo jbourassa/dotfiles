@@ -76,3 +76,11 @@ snippet cl
 	console.log(${1:stuff});
 snippet jq
 	$('${1:selector}')${2}
+snippet then
+	then(function(${1:result}) {
+		${2}
+	});
+snippet .t
+	.then(function(${1:result}) {
+		${2}
+	});

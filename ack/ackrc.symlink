@@ -11,3 +11,4 @@
 --no-log
 --no-pyc
 --ignore-dir=tmp
+--ignore-dir=dist

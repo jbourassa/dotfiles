@@ -4,45 +4,57 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bufkill.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'Raimondi/delimitMate'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-abolish'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'vim-scripts/Bexec'
 
-Bundle 'bufkill.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-endwise'
-Bundle 'Raimondi/delimitMate'
-Bundle 'maxbrunsfeld/vim-yankstack'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-abolish'
-Bundle 'bronson/vim-visual-star-search'
+Plugin 'ervandew/supertab'
 
-Bundle 'vim-scripts/Bexec'
+Plugin 'scrooloose/syntastic'
+Plugin 'pangloss/vim-javascript'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-surround'
 
-" Buggy recently
-" Bundle 'ervandew/supertab'
-Bundle 'Shougo/neocomplcache.vim'
-
-Bundle 'scrooloose/syntastic'
-Bundle 'pangloss/vim-javascript'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-surround'
-
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/gem-ctags'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/gem-ctags'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-bundler'
 
 
-Bundle 'avakhov/vim-yaml'
-Bundle 'xenoterracide/html.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'bling/vim-airline'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
+
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'avakhov/vim-yaml'
+Plugin 'xenoterracide/html.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'bling/vim-airline'
+
+Plugin 'editorconfig/editorconfig-vim'
+
+" Plugin 'digitaltoad/vim-jade'
+
+call vundle#end()
+
+set rtp+=/usr/local/Cellar/go/1.3.1/libexec/misc/vim
 
 filetype plugin indent on
+
 
 set background=dark
 "Remove toolbar
@@ -56,7 +68,6 @@ endif
 colorscheme Tomorrow-Night-Bright
 syntax on
 
-set binary noeol
 set nobackup
 set noswapfile
 set nojoinspaces
@@ -68,7 +79,7 @@ set hidden
 
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store,*.pyc
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store,*.pyc,*/tmp/*,*/dist/*,
 
 set cursorline
 
@@ -147,7 +158,7 @@ let Tlist_Enable_Fold_Column = 0
 let tlist_php_settings = 'php;c:class;d:constant;f:function'
 
 "NERDTree
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
 "Don't need f1 for help
 nmap <F1> <nop>
@@ -157,6 +168,10 @@ let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_switch_buffer = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|node_modules$\|dist$\|tmp$',
+  \ 'file': '\.exe$\|\.so$\|\.dat$\|\.pyc$'
+  \ }
 
 let g:miniBufExplCheckDupeBufs = 0 "Faster miniBufExpl
 
@@ -180,9 +195,11 @@ autocmd VimEnter *  unmap <Leader>bd
 autocmd VimEnter *  unmap <Leader>ba
 autocmd VimEnter *  unmap <Leader>bx
 autocmd VimEnter *  unmap <Leader>bc
+autocmd VimEnter *  unmap <Leader>bl
 
 "4 spaces for markdown
-autocmd FileType markdown setlocal sw=4 sts=4 et
+" NOPE!
+" autocmd FileType markdown setlocal sw=4 sts=4 et
 
 set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"
@@ -198,6 +215,8 @@ set noshowmode
 
 " html validation is useless since I never edit a full regular html page
 let g:syntastic_html_checkers=[]
+" scss will report error because bourbon is not found, let's just not scss lint
+let g:syntastic_scss_checkers=[]
 
 " stolen from Thoughtbot
 if executable('ag')
@@ -208,74 +227,6 @@ if executable('ag')
 endif
 
 
-" -------------------------------------------------------
-" --- Neocomplete config
-" -------------------------------------------------------
-"
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  " For no inserting <CR> key.
-  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -283,3 +234,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" PHP tabs
+autocmd Filetype php setlocal ts=4 sts=4 sw=4 noet

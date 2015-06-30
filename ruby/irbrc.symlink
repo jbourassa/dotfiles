@@ -26,8 +26,6 @@ class Object
   end
 end
 
-begin
-  require 'interactive_editor'
-rescue LoadError => err
-  warn "Couldn't load interactive_editor: #{err}"
+if Kernel.const_defined?("Tenant")
+  Tenant.current = Tenant.first
 end

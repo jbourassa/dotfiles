@@ -15,6 +15,7 @@
         pr = pull --rebase
         lg = log -p
         prs = !git stash && git pr && git stash pop
+        sp = stash pop
 [advice]
 	statusHints = false
 [branch]
@@ -28,8 +29,5 @@
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [credential]
 	helper = osxkeychain

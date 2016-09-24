@@ -26,6 +26,7 @@ Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-surround'
 
@@ -40,7 +41,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'tomtom/tlib_vim'
 
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'avakhov/vim-yaml'
+Plugin 'stephpy/vim-yaml'
 Plugin 'xenoterracide/html.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'bling/vim-airline'
@@ -107,6 +108,8 @@ set nostartofline
 
 " Typing :W -> :w
 cnoreabbrev W w
+" Typing :F -> :NERDTreeFind
+cnoreabbrev F NERDTreeFind
 
 "php settings
 au BufRead,BufNewFile *.php setfiletype php
@@ -205,7 +208,7 @@ set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"
 
 " Set lang for macvim also, apparently system locale isnt loaded by default
-lang fr_CA.UTF-8
+lang en_CA.UTF-8
 
 
 " Airline

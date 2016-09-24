@@ -24,11 +24,9 @@ CASE_SENSITIVE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx bundler gem)
+plugins=(git bundler gem)
 
 source $ZSH/oh-my-zsh.sh
-
-source `brew --prefix`/etc/profile.d/z.sh
 
 # My custom options
 unsetopt correct_all

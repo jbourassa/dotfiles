@@ -26,6 +26,6 @@ class Object
   end
 end
 
-if Kernel.const_defined?("Tenant")
+if Kernel.const_defined?("Tenant") && !Tenant.current
   Tenant.current = Tenant.first
 end

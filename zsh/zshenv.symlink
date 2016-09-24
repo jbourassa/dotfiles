@@ -1,3 +1,6 @@
+# El Capitan, leave my $PATH sailing alone!
+setopt no_global_rcs
+
 export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
 
 # PHP binaries path

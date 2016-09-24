@@ -3,10 +3,14 @@ setopt no_global_rcs
 
 export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
 
-# PHP binaries path
-brew list | grep -o -q php55 && export PATH=$(brew --prefix php55)/bin:$PATH
+# PHP
+export PATH=/usr/local/opt/php55/bin:$PATH
 
-export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH:/usr/local/share/npm/lib/node_modules
+# nvm is slow to boot — let's not eager load it, instead hardcode the path
+# export NVM_DIR=~/.nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+export PATH=$HOME/.nvm/versions/node/v4.3.1/bin:$PATH
+
 export PGDATA=/usr/local/var/postgres
 
 export PATH=$HOME/.rbenv/bin:$PATH
@@ -18,7 +22,8 @@ PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Virtualenv wrapper
- if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-   export WORKON_HOME=~/.virtualenvs
-   source /usr/local/bin/virtualenvwrapper.sh
- fi
+# Not using for now — disable it for faster boot
+# if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+#  export WORKON_HOME=~/.virtualenvs
+#  source /usr/local/bin/virtualenvwrapper.sh
+# fi

@@ -1,58 +1,51 @@
-" Init vundle
-set nocompatible
-filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/tmhedberg/matchit.git'
+Plug 'bufkill.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim', { 'on': 'Ack' }
+Plug 'fholgado/minibufexpl.vim'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdcommenter'
+Plug 'fboender/bexec'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+Plug 'mattn/emmet-vim'
+Plug 'bronson/vim-visual-star-search'
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bufkill.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'Raimondi/delimitMate'
-Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-abolish'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'vim-scripts/Bexec'
+Plug 'ervandew/supertab'
 
-Plugin 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'vim-ruby/vim-ruby'
+Plug 'elixir-lang/vim-elixir'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-surround'
 
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-surround'
-
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/gem-ctags'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
 
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-Plugin 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate'
+Plug 'tomtom/tlib_vim'
 
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'stephpy/vim-yaml'
-Plugin 'xenoterracide/html.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'bling/vim-airline'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'stephpy/vim-yaml'
+Plug 'xenoterracide/html.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'bling/vim-airline'
 
-Plugin 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
-" Plugin 'digitaltoad/vim-jade'
-
-call vundle#end()
-
-set rtp+=/usr/local/Cellar/go/1.3.1/libexec/misc/vim
+"Cool stuff I'm not using
+"Plug 'rking/ag.vim'
+"Plug 'maxbrunsfeld/vim-yankstack'
+"Plugin 'digitaltoad/vim-jade'
+call plug#end()
 
 filetype plugin indent on
 
@@ -148,17 +141,8 @@ nnoremap <leader><leader> <c-^>
 nnoremap <silent> <leader>w :w<CR>
 
 "bind BExec plugin to <leader>r (r -> run)
-nmap <silent> <leader>r :call Bexec()<CR>
-vmap <silent> <leader>r :call BexecVisual()<CR>
-
-"TList config
-let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
-let Tlist_Inc_Winwidth = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Process_File_Always = 1
-let Tlist_Enable_Fold_Column = 0
-let tlist_php_settings = 'php;c:class;d:constant;f:function'
+nmap <silent> <leader>r :call bexec#Normal()<CR>
+vmap <silent> <leader>r :call bexec#Visual()<CR>
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
@@ -220,6 +204,10 @@ set noshowmode
 let g:syntastic_html_checkers=[]
 " scss will report error because bourbon is not found, let's just not scss lint
 let g:syntastic_scss_checkers=[]
+
+
+let g:NERDTreeDirArrowExpandable = "▸"
+let g:NERDTreeDirArrowCollapsible = "▾"
 
 " stolen from Thoughtbot
 if executable('ag')

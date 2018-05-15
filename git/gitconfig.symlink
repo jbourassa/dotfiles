@@ -1,33 +1,31 @@
 [color]
-	ui = auto
-	diff = auto
-	status = auto
-	branch = auto
+  ui = auto
+  diff = auto
+  status = auto
+  branch = auto
 [user]
-	email = jimmy.bourassa@hooktstudios.com
-	name = Jimmy Bourassa
+  email = jbourassa@gmail.com
+  name = Jimmy Bourassa
 [alias]
-        st = status -bs
-        ci = commit
-        br = branch
-        co = checkout
-        df = diff
-        pr = pull --rebase
-        lg = log -p
-        prs = !git stash && git pr && git stash pop
-        sp = stash pop
+  st = status -bs
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  pr = pull --rebase
+  lg = log -p
+  prs = !git stash && git pr && git stash pop
+  sp = stash pop
+  conflicts = diff --name-only --diff-filter=U
 [advice]
-	statusHints = false
+  statusHints = false
 [branch]
-	autosetupmerge = true
+  autosetupmerge = true
 [push]
-	default = tracking
+  default = tracking
 [core]
-	excludesfile = ~/.gitignore
-	editor = vim
+  excludesfile = ~/.gitignore
+  editor = vim
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain

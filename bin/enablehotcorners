@@ -1,0 +1,5 @@
+#! /bin/sh
+defaults write com.apple.Dock wvous-tr-corner -int 4;
+defaults write com.apple.Dock wvous-br-corner -int 2;
+defaults write com.apple.Dock wvous-tl-corner -int 3;
+killall Dock

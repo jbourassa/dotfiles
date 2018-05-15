@@ -1,29 +1,12 @@
 # El Capitan, leave my $PATH sailing alone!
 setopt no_global_rcs
 
-export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/pear/bin
+export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
-# PHP
-export PATH=/usr/local/opt/php55/bin:$PATH
 
 # nvm is slow to boot — let's not eager load it, instead hardcode the path
 # export NVM_DIR=~/.nvm
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-export PATH=$HOME/.nvm/versions/node/v4.3.1/bin:$PATH
+export PATH=$HOME/.nvm/versions/node/v8.9.4/bin:$PATH
 
-export PGDATA=/usr/local/var/postgres
-
-export PATH=$HOME/.rbenv/bin:$PATH
-export EDITOR=mvim
-
-# When using Postgres.app
-PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Virtualenv wrapper
-# Not using for now — disable it for faster boot
-# if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-#  export WORKON_HOME=~/.virtualenvs
-#  source /usr/local/bin/virtualenvwrapper.sh
-# fi
+export EDITOR=vim

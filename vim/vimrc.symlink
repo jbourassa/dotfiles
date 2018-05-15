@@ -17,9 +17,10 @@ Plug 'bronson/vim-visual-star-search'
 
 Plug 'ervandew/supertab'
 
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
+Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
@@ -50,6 +51,7 @@ call plug#end()
 filetype plugin indent on
 
 
+set shell=$SHELL\ -l
 set background=dark
 "Remove toolbar
 if has("gui_running")
@@ -196,14 +198,12 @@ lang en_CA.UTF-8
 
 
 " Airline
-set guifont=Droid\ Sans\ Mono\ for\ Powerline
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
 let g:airline_powerline_fonts = 1
 set noshowmode
 
-" html validation is useless since I never edit a full regular html page
-let g:syntastic_html_checkers=[]
-" scss will report error because bourbon is not found, let's just not scss lint
-let g:syntastic_scss_checkers=[]
+let g:ale_linters = {'javascript': ['jshint'], 'ruby': ['ruby']}
+
 
 
 let g:NERDTreeDirArrowExpandable = "▸"

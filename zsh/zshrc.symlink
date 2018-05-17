@@ -35,21 +35,15 @@ DISABLE_CORRECTION="true"
 alias m=mvim
 alias v=vim
 alias vim='mvim -v'
-alias nginx-restart="sudo launchctl unload -w  /System/Library/LaunchDaemons/org.nginx.plist && sudo launchctl load -w  /System/Library/LaunchDaemons/org.nginx.plist"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en0"
 alias be="bundle exec"
 alias mysql="mysql -u root"
-alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-alias fr="bundle exec foreman run"
-alias frp="bundle exec foreman run padrino rake"
-alias fs="foreman start"
-alias nginx_start="sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-alias nginx_stop="sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-alias nginx_restart="nginx_stop; nginx_start"
 alias psg="ps aux | grep"
 alias rake="noglob bundled_rake"
+
+# emacs keys, I know
+bindkey -e
 
 # Use some default convenient keys even when in vi mode
 bindkey "^r" history-incremental-search-backward

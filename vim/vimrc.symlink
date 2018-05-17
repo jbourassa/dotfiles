@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/tmhedberg/matchit.git'
-Plug 'bufkill.vim'
+Plug 'vim-scripts/bufkill.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'fholgado/minibufexpl.vim'
@@ -175,13 +175,6 @@ imap ∏ <Plug>yankstack_substitute_newer_paste
 imap jj <Esc>
 
 "Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
-autocmd VimEnter *  unmap <Leader>bundo
-autocmd VimEnter *  unmap <Leader>bw
-autocmd VimEnter *  unmap <Leader>bb
-autocmd VimEnter *  unmap <Leader>bf
-autocmd VimEnter *  unmap <Leader>bun
-autocmd VimEnter *  unmap <Leader>bd
-autocmd VimEnter *  unmap <Leader>ba
 autocmd VimEnter *  unmap <Leader>bx
 autocmd VimEnter *  unmap <Leader>bc
 autocmd VimEnter *  unmap <Leader>bl
@@ -205,9 +198,8 @@ set noshowmode
 let g:ale_linters = {'javascript': ['jshint'], 'ruby': ['ruby']}
 
 
-
-let g:NERDTreeDirArrowExpandable = "▸"
-let g:NERDTreeDirArrowCollapsible = "▾"
+"let g:NERDTreeDirArrowExpandable = "▸"
+"let g:NERDTreeDirArrowCollapsible = "▾"
 
 " stolen from Thoughtbot
 if executable('ag')
@@ -225,6 +217,3 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" PHP tabs
-autocmd Filetype php setlocal ts=4 sts=4 sw=4 noet

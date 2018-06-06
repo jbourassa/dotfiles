@@ -3,6 +3,10 @@ setopt no_global_rcs
 
 export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
+export GOPATH=$HOME
+export PATH=$GOPATH/bin:$PATH
+export PATH="/usr/local/opt/gnupg/libexec/gpgbin:$PATH"
+
 
 # nvm is slow to boot — let's not eager load it, instead hardcode the path
 # export NVM_DIR=~/.nvm
@@ -10,3 +14,5 @@ export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/.nvm/versions/node/v8.9.4/bin:$PATH
 
 export EDITOR=vim
+
+export TDD=0

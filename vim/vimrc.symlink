@@ -1,13 +1,21 @@
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/tmhedberg/matchit.git'
+
+set rtp+=~/.fzf
+Plug 'junegunn/fzf.vim'
+
 Plug 'vim-scripts/bufkill.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-Plug 'fholgado/minibufexpl.vim'
+" Buffer: delete when I'm confident
+" Plug 'https://github.com/tmhedberg/matchit.git'
+" Plug 'fholgado/minibufexpl.vim'
+
+Plug 'bling/vim-bufferline'
+
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'fboender/bexec'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
@@ -38,31 +46,44 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'stephpy/vim-yaml'
 Plug 'xenoterracide/html.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
+
 Plug 'bling/vim-airline'
+Plug 'chriskempson/base16-vim'
 
 Plug 'editorconfig/editorconfig-vim'
-
-"Cool stuff I'm not using
-"Plug 'rking/ag.vim'
-"Plug 'maxbrunsfeld/vim-yankstack'
-"Plugin 'digitaltoad/vim-jade'
 call plug#end()
 
 filetype plugin indent on
 
-
 set shell=$SHELL\ -l
-set background=dark
-"Remove toolbar
 if has("gui_running")
+  "Remove toolbar
   set guioptions-=T
+  " Key for tab navigation
   nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
   nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
   set balloondelay=100000 " Long balloon to avoir huge tooltip in ruby files
   set guioptions+=c
 endif
-colorscheme Tomorrow-Night-Bright
+
+" Color!!!!
+set termguicolors
+let base16colorspace=256
+colorscheme base16-material-darker
+
+" Tweak color scheme
+function! s:base16_customize() abort
+  hi Comment guifg=#6A6A6A
+  highlight LineNr guibg=NONE
+  " call Base16hi("Comment", "6A6A6A", "", "6A6A6A", "", "", "")
+endfunction
+
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
 syntax on
+
 
 set nobackup
 set noswapfile
@@ -84,13 +105,12 @@ set list listchars=tab:»\ ,trail:·
 filetype on
 filetype plugin indent on
 set backspace=2
-set vb
+set vb "visual bell
 runtime macros/matchit.vim
 
 set encoding=utf-8
 set fileencoding=utf-8
 set hlsearch
-set stl=%f\ %m\ %r\ L:\ %l/%L[%p%%]\ C:\ %c\ Buf:\ #%n
 set laststatus=2
 set history=100
 set scrolloff=5
@@ -101,33 +121,28 @@ set smartcase
 set gdefault " Always search/replace globally
 set nostartofline
 
-" Typing :W -> :w
 cnoreabbrev W w
-" Typing :F -> :NERDTreeFind
 cnoreabbrev F NERDTreeFind
-
-"php settings
-au BufRead,BufNewFile *.php setfiletype php
-au BufRead,BufNewFile *.ctp setfiletype php
-let php_htmlInStrings = 1
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile Guardfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
-
-au BufRead,BufNewFile *.js.tpl set ft=javascript
 
 "Key bidings
 let mapleader = ","
 let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
-nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 "Moving around windows (taken from Derek Wyatt)
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
 noremap <silent> ,k :wincmd k<cr>
 noremap <silent> ,l :wincmd l<cr>
+
+nmap <Leader>cp :let @*=expand("%")<CR>
+nmap <Leader>cP :let @*=expand("%:p")<CR>
+
+map <Leader>a :Ack<Space>
 
 " Tab navigation
 noremap <silent> <D-A-Left> :tabp<CR>
@@ -139,7 +154,6 @@ vnoremap <S-Tab> <gv
 
 "Faster prev-buffer
 nnoremap <leader><leader> <c-^>
-"Faster save
 nnoremap <silent> <leader>w :w<CR>
 
 "bind BExec plugin to <leader>r (r -> run)
@@ -149,66 +163,37 @@ vmap <silent> <leader>r :call bexec#Visual()<CR>
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
-"Don't need f1 for help
-nmap <F1> <nop>
+"fzf stuff
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+nmap <Leader>t :Files<CR>
+nmap <Leader>b :Buffers<CR>
 
-nmap <silent> <Leader>b :CtrlPBuffer<CR>
-let g:ctrlp_map = '<Leader>t'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|node_modules$\|dist$\|tmp$',
-  \ 'file': '\.exe$\|\.so$\|\.dat$\|\.pyc$'
-  \ }
-
-let g:miniBufExplCheckDupeBufs = 0 "Faster miniBufExpl
-
-" meta-p/P without killing regular accents
-nmap π <Plug>yankstack_substitute_older_paste
-xmap π <Plug>yankstack_substitute_older_paste
-imap π <Plug>yankstack_substitute_older_paste
-nmap ∏ <Plug>yankstack_substitute_newer_paste
-xmap ∏ <Plug>yankstack_substitute_newer_paste
-imap ∏ <Plug>yankstack_substitute_newer_paste
-
-imap jj <Esc>
-
-"Unmap some unsued buffer command to use command-t with buffers (<Leader>b)
+"Unmap some unsued buffer command to use fzf buffers (<Leader>b)
+autocmd VimEnter *  unmap <Leader>bundo
+autocmd VimEnter *  unmap <Leader>bw
+autocmd VimEnter *  unmap <Leader>bb
+autocmd VimEnter *  unmap <Leader>bf
+autocmd VimEnter *  unmap <Leader>bun
+autocmd VimEnter *  unmap <Leader>bd
+autocmd VimEnter *  unmap <Leader>ba
 autocmd VimEnter *  unmap <Leader>bx
 autocmd VimEnter *  unmap <Leader>bc
 autocmd VimEnter *  unmap <Leader>bl
-
-"4 spaces for markdown
-" NOPE!
-" autocmd FileType markdown setlocal sw=4 sts=4 et
+imap jj <Esc>
 
 set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"
 
-" Set lang for macvim also, apparently system locale isnt loaded by default
-lang en_CA.UTF-8
-
+" Use `ag` instead of `ack` for searching
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 
 " Airline
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
 let g:airline_powerline_fonts = 1
-set noshowmode
+set noshowmode " Hide --INSERT-- since it's in airline
+let g:airline#extensions#bufferline#enabled = 0
 
-let g:ale_linters = {'javascript': ['jshint'], 'ruby': ['ruby']}
-
-
-"let g:NERDTreeDirArrowExpandable = "▸"
-"let g:NERDTreeDirArrowCollapsible = "▾"
-
-" stolen from Thoughtbot
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
+let g:ale_linters = {'javascript': ['jshint'], 'ruby': ['ruby', 'rubocop']}
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

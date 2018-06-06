@@ -6,6 +6,8 @@ prompt pure
 alias l='ls -lGh'
 alias ll='l -a'
 alias g=git
+alias gp='git push'
+alias ga='git add'
 alias m=mvim
 alias v=vim
 alias vim='mvim -v'
@@ -16,19 +18,28 @@ alias mysql="mysql -u root"
 alias psg="ps aux | grep"
 alias rake="noglob bundled_rake"
 
-# emacs keys, I know
-bindkey -e
+export EDITOR='mvim -v'
 
-## History file configuration
+# Keybindings stolen from oh-my-zsh
+WORDCHARS=''
+bindkey -e
+bindkey "^[[H" beginning-of-line                    # [Home] - Go to beginning of line
+bindkey "^[[F" end-of-line                          # [End] - Go to end of line
+bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
+
+# History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_all_dups   # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

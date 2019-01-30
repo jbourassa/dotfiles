@@ -7,6 +7,7 @@
   email = jbourassa@gmail.com
   name = Jimmy Bourassa
 [alias]
+  a = add
   st = status -bs
   ci = commit
   br = branch
@@ -17,6 +18,10 @@
   prs = !git stash && git pr && git stash pop
   sp = stash pop
   conflicts = diff --name-only --diff-filter=U
+  branch-diff = !git diff $(git merge-base HEAD origin/master)
+  pushset = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+  pf = push --force-with-lease
+  p =  push
 [advice]
   statusHints = false
 [branch]
@@ -25,7 +30,20 @@
   default = tracking
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
-
 [credential]
   helper = osxkeychain
+[includeIf "gitdir:~/src/github.com/Shopify/"]
+  path = ~/.gitconfig-shopify
+[diff]
+  algorithm = patience
+[protocol]
+	version = 2
+[protocol "galaxy"]
+	allow = always
+[url "galaxy::Shopify/"]
+	insteadOf = https://github.com/Shopify/
+	insteadOf = git@github.com:Shopify/
+[url "https://github.com/Shopify/"]
+	pushInsteadOf = https://github.com/Shopify/
+[url "git@github.com:Shopify/"]
+	pushInsteadOf = git@github.com:Shopify/

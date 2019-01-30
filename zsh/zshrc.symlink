@@ -6,17 +6,24 @@ prompt pure
 alias l='ls -lGh'
 alias ll='l -a'
 alias g=git
-alias gp='git push'
+# Bring back once muscle memory for gp -f is gone
+# alias gp = 'git pf'
 alias ga='git add'
 alias m=mvim
-alias v=vim
-alias vim='mvim -v'
+alias v=nvim
+alias vim=nvim
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en0"
 alias be="bundle exec"
 alias mysql="mysql -u root"
 alias psg="ps aux | grep"
 alias rake="noglob bundled_rake"
+alias rgc="rg --glob='!test' --glob='!spec'"
+alias rgt="rg --glob='*_test.rb'"
+
+# NOPE NOPE NOPE
+alias ag="echo 'You meant rg?'"
+alias gitx="echo 'You meant fork?'"
 
 export EDITOR='mvim -v'
 
@@ -40,6 +47,7 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
+setopt nobanghist             # disable ! trying to reference histort everywhere
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

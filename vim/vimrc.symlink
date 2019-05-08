@@ -1,23 +1,20 @@
 call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.fzf
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'vim-scripts/bufkill.vim'
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-" Buffer: delete when I'm confident
-" Plug 'https://github.com/tmhedberg/matchit.git'
-" Plug 'fholgado/minibufexpl.vim'
-
-Plug 'bling/vim-bufferline'
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'fboender/bexec'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' "Gbrowse
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
+Plug 'tmhedberg/matchit'
+
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'mattn/emmet-vim'
@@ -42,13 +39,15 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
 
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'stephpy/vim-yaml'
 Plug 'xenoterracide/html.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
 
 Plug 'bling/vim-airline'
-Plug 'chriskempson/base16-vim'
+Plug 'danielwe/base16-vim' " https://github.com/chriskempson/base16-vim/issues/197
+
+
+" Trying new things
+Plug 'jremmen/vim-ripgrep'
 
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
@@ -141,6 +140,7 @@ noremap <silent> ,l :wincmd l<cr>
 
 nmap <Leader>cp :let @*=expand("%")<CR>
 nmap <Leader>cP :let @*=expand("%:p")<CR>
+nmap <Leader>% :let<Space>@*=@%<CR>
 
 map <Leader>a :Ack<Space>
 
@@ -167,6 +167,33 @@ let NERDTreeIgnore = ['\.pyc$', '\.o$']
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 nmap <Leader>t :Files<CR>
 nmap <Leader>b :Buffers<CR>
+let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*"'
+let $FZF_DEFAULT_OPTS = '-i'
+
+if has('nvim') || has('gui_running')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
+
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Keyword'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+
 
 "Unmap some unsued buffer command to use fzf buffers (<Leader>b)
 autocmd VimEnter *  unmap <Leader>bundo
@@ -184,8 +211,8 @@ imap jj <Esc>
 set exrc    " enable per-directory .vimrc files
 set secure  " disable unsafe commands in local .vimrc files"
 
-" Use `ag` instead of `ack` for searching
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+let g:ruby_indent_assignment_style = 'variable'
+let g:ruby_indent_block_style = 'do'
 
 " Airline
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
@@ -193,7 +220,7 @@ let g:airline_powerline_fonts = 1
 set noshowmode " Hide --INSERT-- since it's in airline
 let g:airline#extensions#bufferline#enabled = 0
 
-let g:ale_linters = {'javascript': ['jshint'], 'ruby': ['ruby', 'rubocop']}
+let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'], 'elixir': ['mix']}
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -202,3 +229,25 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+function! s:getVisualSelection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+
+    if len(lines) == 0
+        return ""
+    endif
+
+    let lines[-1] = lines[-1][:column_end - (&selection == "inclusive" ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+
+    return join(lines, "\n")
+endfunction
+
+function! s:toSearchString(str)
+  return substitute(a:str, "::", "/", "g")
+endfunction
+
+vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>toSearchString(<SID>getVisualSelection())<CR><CR>
+nnoremap <silent><leader>f :FZF -q <C-R>=<SID>toSearchString(expand("<cword>"))<CR><CR>

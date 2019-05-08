@@ -16,3 +16,4 @@ export PATH=$HOME/.nvm/versions/node/v8.9.4/bin:$PATH
 export EDITOR=vim
 
 export TDD=0
+export ERL_AFLAGS="-kernel shell_history enabled"

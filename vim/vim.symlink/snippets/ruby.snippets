@@ -502,3 +502,8 @@ snippet tas
 	task :${2:task_name => [:dependent, :tasks]} do
 		${3}
 	end
+snippet mb
+	MultiCurrency::MoneyBag.new(
+		shop_money: Money.new(${1:10.00}, "${2:USD}"),
+		presentment_money: Money.new(${3:10.00}, "${4:USD}"),
+	)

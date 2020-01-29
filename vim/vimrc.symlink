@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Right ENV for shadowenv
+Plug 'Shopify/shadowenv'
+
 Plug 'vim-scripts/bufkill.vim'
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 
@@ -22,13 +25,17 @@ Plug 'bronson/vim-visual-star-search'
 
 Plug 'ervandew/supertab'
 
+" Not now? :(
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
-Plug 'vim-ruby/vim-ruby'
-Plug 'mxw/vim-jsx'
-Plug 'elixir-lang/vim-elixir'
+
+" Let's try polyglot instead?
+Plug 'sheerun/vim-polyglot'
+
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+" vv trying this one instead
+Plug 'machakann/vim-sandwich'
 
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
@@ -42,17 +49,22 @@ Plug 'tomtom/tlib_vim'
 Plug 'stephpy/vim-yaml'
 Plug 'xenoterracide/html.vim'
 
-Plug 'bling/vim-airline'
-Plug 'danielwe/base16-vim' " https://github.com/chriskempson/base16-vim/issues/197
+Plug 'vim-airline/vim-airline'
+Plug 'chriskempson/base16-vim' " https://github.com/chriskempson/base16-vim/issues/197
 
 
 " Trying new things
 Plug 'jremmen/vim-ripgrep'
+Plug 'Asheq/close-buffers.vim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'AndrewRadev/splitjoin.vim'
+
+" I wanna try this too eventually? moll/vim-bbye
+" With: let g:splitjoin_ruby_curly_braces = 0
+
 
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
-
-filetype plugin indent on
 
 set shell=$SHELL\ -l
 if has("gui_running")
@@ -92,6 +104,7 @@ set number
 set showmode
 set tabstop=2 shiftwidth=2 softtabstop=2 et
 set hidden
+set linebreak
 
 set wildmenu
 set wildmode=list:longest,list:full
@@ -102,10 +115,10 @@ set cursorline
 set list listchars=tab:»\ ,trail:·
 
 filetype on
-filetype plugin indent on
+" filetype plugin indent on
 set backspace=2
 set vb "visual bell
-runtime macros/matchit.vim
+" runtime macros/matchit.vim
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -120,8 +133,13 @@ set smartcase
 set gdefault " Always search/replace globally
 set nostartofline
 
-cnoreabbrev W w
-cnoreabbrev F NERDTreeFind
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+call SetupCommandAlias("W","w")
+call SetupCommandAlias("F","NERDTreeFind")
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile Guardfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
@@ -164,10 +182,10 @@ vmap <silent> <leader>r :call bexec#Visual()<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
 "fzf stuff
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 nmap <Leader>t :Files<CR>
 nmap <Leader>b :Buffers<CR>
-let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*"'
+" nmap <Leader>h :History<CR>
+let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*" --glob="!*.rbi"'
 let $FZF_DEFAULT_OPTS = '-i'
 
 if has('nvim') || has('gui_running')
@@ -219,8 +237,10 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
 let g:airline_powerline_fonts = 1
 set noshowmode " Hide --INSERT-- since it's in airline
 let g:airline#extensions#bufferline#enabled = 0
+let g:airline_section_b = '' " don't care for branch (takes room and is in my terminal)
+let g:airline_section_y = '' " don't care for encoding
 
-let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'], 'elixir': ['mix']}
+let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -251,3 +271,33 @@ endfunction
 
 vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>toSearchString(<SID>getVisualSelection())<CR><CR>
 nnoremap <silent><leader>f :FZF -q <C-R>=<SID>toSearchString(expand("<cword>"))<CR><CR>
+nnoremap <silent><leader>d :Rg <C-R>="def\\\s+(self.)" . expand("<cword>")<CR><CR>
+
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \   {
+      \     'buns':     ['<%= ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['='],
+      \     'nesting':  1
+      \   },
+      \   {
+      \     'buns':     ['<% ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['-'],
+      \     'nesting':  1
+      \   },
+      \   {
+      \     'buns':     ['<%# ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['#'],
+      \     'nesting':  1
+      \   }
+      \ ]
+
+" autocmd FileType eruby inoremap inoremap <C-s>E <%=  %><left><left><left>
+" autocmd FileType eruby inoremap inoremap <C-s>e <%  %><left><left><left>
+
+
+" Alternatively:
+"nnoremap <leader>d :Rg <C-R>="def\\\s+(self.)<C-R><C-W>"<CR><CR>

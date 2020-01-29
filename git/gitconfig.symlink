@@ -1,49 +1,57 @@
 [color]
-  ui = auto
-  diff = auto
-  status = auto
-  branch = auto
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
 [user]
-  email = jbourassa@gmail.com
-  name = Jimmy Bourassa
+	email = jbourassa@gmail.com
+	name = Jimmy Bourassa
+	signingkey = 0451204015141D45
 [alias]
-  a = add
-  st = status -bs
-  ci = commit
-  br = branch
-  co = checkout
-  df = diff
-  pr = pull --rebase
-  lg = log -p
-  prs = !git stash && git pr && git stash pop
-  sp = stash pop
-  conflicts = diff --name-only --diff-filter=U
-  branch-diff = !git diff $(git merge-base HEAD origin/master)
-  pushset = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-  pf = push --force-with-lease
-  p =  push
+	a = add
+	st = status -bs
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	pr = pull --rebase
+	lg = log -p
+	prs = !git stash && git pr && git stash pop
+	sp = stash pop
+	conflicts = diff --name-only --diff-filter=U
+	branch-diff = !git diff $(git merge-base HEAD origin/master)
+	pushset = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	pf = push --force-with-lease
+	p =  push
+	f =  fetch --quiet --prune
 [advice]
-  statusHints = false
+	statusHints = false
 [branch]
-  autosetupmerge = true
+	autosetuprebase = always
 [push]
-  default = tracking
+	default = tracking
 [core]
-  excludesfile = ~/.gitignore
-[credential]
-  helper = osxkeychain
+	excludesfile = ~/.gitignore
+	commitGraph = true
 [includeIf "gitdir:~/src/github.com/Shopify/"]
-  path = ~/.gitconfig-shopify
+	path = ~/.gitconfig-shopify
 [diff]
-  algorithm = patience
+	algorithm = patience
+	noprefix = true
 [protocol]
 	version = 2
-[protocol "galaxy"]
-	allow = always
-[url "galaxy::Shopify/"]
-	insteadOf = https://github.com/Shopify/
-	insteadOf = git@github.com:Shopify/
+[remote]
+	pushdefault = origin
+[gpg]
+	program = gpg
+[gc]
+	writeCommitGraph = true
 [url "https://github.com/Shopify/"]
-	pushInsteadOf = https://github.com/Shopify/
-[url "git@github.com:Shopify/"]
-	pushInsteadOf = git@github.com:Shopify/
+	insteadOf = git@github.com:Shopify/
+	insteadOf = git@github.com:shopify/
+	insteadOf = ssh://git@github.com/Shopify/
+	insteadOf = ssh://git@github.com/shopify/
+[commit]
+	gpgsign = true
+[credential]
+	helper = store --file /opt/dev/var/private/git_credential_store

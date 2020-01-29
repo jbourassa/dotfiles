@@ -5,13 +5,14 @@ export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
-export PATH="/usr/local/opt/gnupg/libexec/gpgbin:$PATH"
 
 
 # nvm is slow to boot — let's not eager load it, instead hardcode the path
 # export NVM_DIR=~/.nvm
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-export PATH=$HOME/.nvm/versions/node/v8.9.4/bin:$PATH
+export PATH=/opt/dev/sh/nvm/versions/node/v12.13.0/bin:$PATH
+
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 export EDITOR=vim
 

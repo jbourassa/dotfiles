@@ -26,6 +26,7 @@ alias ag="echo 'You meant rg?'"
 alias gitx="echo 'You meant fork?'"
 
 export EDITOR='mvim -v'
+export GPG_TTY=$(tty)
 
 # Keybindings stolen from oh-my-zsh
 WORDCHARS=''

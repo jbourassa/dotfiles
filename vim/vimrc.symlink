@@ -7,7 +7,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shopify/shadowenv'
 
 Plug 'vim-scripts/bufkill.vim'
-Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'scrooloose/nerdcommenter'
@@ -54,7 +53,6 @@ Plug 'chriskempson/base16-vim' " https://github.com/chriskempson/base16-vim/issu
 
 
 " Trying new things
-Plug 'jremmen/vim-ripgrep'
 Plug 'Asheq/close-buffers.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -187,14 +185,14 @@ nmap <Leader>b :Buffers<CR>
 " nmap <Leader>h :History<CR>
 let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*" --glob="!*.rbi"'
 let $FZF_DEFAULT_OPTS = '-i'
+let g:fzf_preview_window = ''
 
 if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+  let $FZF_DEFAULT_OPTS .= ' --info=inline'
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 endif
-
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -210,7 +208,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
 
 
 "Unmap some unsued buffer command to use fzf buffers (<Leader>b)
@@ -301,3 +298,9 @@ let g:sandwich#recipes += [
 
 " Alternatively:
 "nnoremap <leader>d :Rg <C-R>="def\\\s+(self.)<C-R><C-W>"<CR><CR>
+
+
+command! -bang -nargs=* Rgp
+  \ call fzf#vim#grep(
+  \   'rg --line-number --no-heading --color=always --smart-case '. <q-args>, 1,
+  \   fzf#vim#with_preview({'options': ['--preview-window=up:60%']}), <bang>1)

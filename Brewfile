@@ -1,0 +1,12 @@
+brew "rg"
+brew "tldr"
+brew "neovim"
+
+cask "firefox"
+cask "iterm2"
+cask "macvim"
+cask "1password"
+cask "macvim"
+cask "keepingyouawake"
+cask "fork"
+cask "vlc"

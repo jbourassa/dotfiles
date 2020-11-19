@@ -32,12 +32,8 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-markdown'
-" Plug 'tpope/vim-surround'
-" vv trying this one instead
 Plug 'machakann/vim-sandwich'
 
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 
 
@@ -77,7 +73,7 @@ endif
 
 " Color!!!!
 set termguicolors
-let base16colorspace=256
+" let base16colorspace=256
 colorscheme base16-material-darker
 
 " Tweak color scheme
@@ -148,11 +144,16 @@ let g:mapleader = ","
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 set pastetoggle=<F3>
+
 "Moving around windows (taken from Derek Wyatt)
-noremap <silent> ,h :wincmd h<cr>
-noremap <silent> ,j :wincmd j<cr>
-noremap <silent> ,k :wincmd k<cr>
-noremap <silent> ,l :wincmd l<cr>
+noremap <silent> <leader>h :wincmd h<cr>
+noremap <silent> <leader>j :wincmd j<cr>
+noremap <silent> <leader>k :wincmd k<cr>
+noremap <silent> <leader>l :wincmd l<cr>
+
+"Aaaand around buffers
+nmap <silent> <S-Right> :bnext<CR>
+nmap <silent> <S-Left> :bprevious<CR>
 
 nmap <Leader>cp :let @*=expand("%")<CR>
 nmap <Leader>cP :let @*=expand("%:p")<CR>
@@ -183,7 +184,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.o$']
 nmap <Leader>t :Files<CR>
 nmap <Leader>b :Buffers<CR>
 " nmap <Leader>h :History<CR>
-let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*" --glob="!*.rbi"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*" --glob="!*.rbi" --glob="!components/platform/test/unit/graph_api/admin/graphql_validation/*"'
 let $FZF_DEFAULT_OPTS = '-i'
 let g:fzf_preview_window = ''
 

@@ -269,7 +269,6 @@ endfunction
 
 vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>toSearchString(<SID>getVisualSelection())<CR><CR>
 nnoremap <silent><leader>f :FZF -q <C-R>=<SID>toSearchString(expand("<cword>"))<CR><CR>
-nnoremap <silent><leader>d :Rg <C-R>="def\\\s+(self.)" . expand("<cword>")<CR><CR>
 
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
@@ -292,14 +291,6 @@ let g:sandwich#recipes += [
       \     'nesting':  1
       \   }
       \ ]
-
-" autocmd FileType eruby inoremap inoremap <C-s>E <%=  %><left><left><left>
-" autocmd FileType eruby inoremap inoremap <C-s>e <%  %><left><left><left>
-
-
-" Alternatively:
-"nnoremap <leader>d :Rg <C-R>="def\\\s+(self.)<C-R><C-W>"<CR><CR>
-
 
 command! -bang -nargs=* Rgp
   \ call fzf#vim#grep(

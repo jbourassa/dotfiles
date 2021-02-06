@@ -66,9 +66,15 @@ gco() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
+alias git-clean='git branch --merged | egrep -v "(^\*|master|dev|main)" | xargs git branch -d'
+
 FZF_DEFAULT_OPTS="-i"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bundlecd() {
-  cd $(bundle info --path $1)
+  local path=$(bundle info --path $1)
+
+  if [ -e $path ]; then
+    cd $path
+  fi
 }

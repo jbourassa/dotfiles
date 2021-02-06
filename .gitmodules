@@ -1,6 +1,0 @@
-[submodule "zsh/pure"]
-	path = zsh/pure
-	url = https://github.com/sindresorhus/pure.git
-[submodule "fzf.symlink"]
-	path = fzf.symlink
-	url = https://github.com/junegunn/fzf.git

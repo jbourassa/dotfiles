@@ -1,16 +1,11 @@
 # El Capitan, leave my $PATH sailing alone!
 setopt no_global_rcs
+export EDITOR='vim'
 
 export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
-
-
-# nvm is slow to boot — let's not eager load it, instead hardcode the path
-# export NVM_DIR=~/.nvm
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-export PATH=/opt/dev/sh/nvm/versions/node/v12.13.0/bin:$PATH
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
@@ -18,3 +13,4 @@ export EDITOR=vim
 
 export TDD=0
 export ERL_AFLAGS="-kernel shell_history enabled"
+if [ -e /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

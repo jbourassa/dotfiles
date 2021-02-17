@@ -11,11 +11,12 @@
 	a = add
 	st = status -bs
 	ci = commit
-	br = branch
 	co = checkout
 	df = diff
 	rom = rebase origin/master
+	f =  fetch origin --quiet --prune
 	from = !git fetch origin master --quiet && git rom
+	fb = !git fetch origin $1:$1
 	pr = pull --rebase
 	lg = log -p
 	prs = !git stash && git pr && git stash pop
@@ -25,7 +26,6 @@
 	p =  push
 	pf = push --force-with-lease
 	pn = !git push --set-upstream origin $(git branch --show-current)
-	f =  fetch origin --quiet --prune
 [advice]
 	statusHints = false
 [branch]

@@ -89,7 +89,6 @@ augroup on_change_colorschema
 augroup END
 syntax on
 
-
 set nobackup
 set noswapfile
 set nojoinspaces
@@ -112,7 +111,6 @@ filetype on
 " filetype plugin indent on
 set backspace=2
 set vb "visual bell
-" runtime macros/matchit.vim
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -158,8 +156,6 @@ nmap <silent> <S-Left> :bprevious<CR>
 nmap <Leader>cp :let @*=expand("%")<CR>
 nmap <Leader>cP :let @*=expand("%:p")<CR>
 nmap <Leader>% :let<Space>@*=@%<CR>
-
-map <Leader>a :Ack<Space>
 
 " Tab navigation
 noremap <silent> <D-A-Left> :tabp<CR>
@@ -238,6 +234,7 @@ let g:airline#extensions#bufferline#enabled = 0
 let g:airline_section_b = '' " don't care for branch (takes room and is in my terminal)
 let g:airline_section_y = '' " don't care for encoding
 
+let g:snipMate = { 'snippet_version' : 1 } " Get rid of deprecation
 let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}
 
 " Enable omni completion.

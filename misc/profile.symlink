@@ -1,1 +1,2 @@
 export LANG=en_CA.UTF-8
+if [ -e /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -1,5 +1,6 @@
 source ~/dotfiles/zsh/bundler.plugin.zsh
 
+fpath+=$HOME/dotfiles/zsh/pure
 PURE_GIT_PULL=0
 autoload -U promptinit; promptinit
 prompt pure

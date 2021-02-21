@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Right ENV for shadowenv
@@ -52,6 +52,8 @@ Plug 'chriskempson/base16-vim' " https://github.com/chriskempson/base16-vim/issu
 Plug 'Asheq/close-buffers.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'AndrewRadev/splitjoin.vim'
+
+" What about I learn about vim-textobj-ruby?
 
 " I wanna try this too eventually? moll/vim-bbye
 " With: let g:splitjoin_ruby_curly_braces = 0
@@ -172,6 +174,9 @@ nnoremap <silent> <leader>w :w<CR>
 "bind BExec plugin to <leader>r (r -> run)
 nmap <silent> <leader>r :call bexec#Normal()<CR>
 vmap <silent> <leader>r :call bexec#Visual()<CR>
+
+" From Drew's workshop, so cool!
+xnoremap . :norm.<CR>,
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$']

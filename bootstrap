@@ -161,7 +161,9 @@ git submodule update --init --recursive
 git pull --recurse-submodules --ff-only
 
 info "installing vim plugins"
-nvim -E +PlugInstall +qall
+# Why does this core dump?
+# nvim -E +PlugInstall +qall
+/usr/bin/vim -E +PlugInstall +qall
 
 echo ''
 echo '  All installed!'

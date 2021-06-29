@@ -24,8 +24,7 @@ Plug 'bronson/vim-visual-star-search'
 
 Plug 'ervandew/supertab'
 
-" Not now? :(
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
 " Let's try polyglot instead?
@@ -240,7 +239,8 @@ let g:airline_section_b = '' " don't care for branch (takes room and is in my te
 let g:airline_section_y = '' " don't care for encoding
 
 let g:snipMate = { 'snippet_version' : 1 } " Get rid of deprecation
-let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}
+" let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}
+let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'], 'elixir': ['mix']}
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -294,6 +294,18 @@ let g:sandwich#recipes += [
       \   }
       \ ]
 
+" COC
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gc <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+"
 command! -bang -nargs=* Rgp
   \ call fzf#vim#grep(
   \   'rg --line-number --no-heading --color=always --smart-case '. <q-args>, 1,

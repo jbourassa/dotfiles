@@ -30,6 +30,7 @@
 	statusHints = false
 [branch]
 	autosetuprebase = always
+	sort = -committerdate
 [push]
 	default = tracking
 [core]

@@ -8,21 +8,22 @@
 	name = Jimmy Bourassa
 	signingkey = 0451204015141D45
 [alias]
+	main = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	a = add
 	st = status -bs
 	ci = commit
 	co = checkout
 	df = diff
-	rom = rebase origin/master
+	rom = !git rebase origin/$(git main)
 	f =  fetch origin --quiet --prune
-	from = !git fetch origin master --quiet && git rom
+	from = !git fetch origin $(git main) --quiet && git rom
 	fb = !git fetch origin $1:$1
 	pr = pull --rebase
 	lg = log -p
 	prs = !git stash && git pr && git stash pop
 	sp = stash pop
 	conflicts = diff --name-only --diff-filter=U
-	branch-diff = !git diff $(git merge-base HEAD origin/master)
+	branch-diff = !git diff $(git merge-base HEAD origin/$(git main))
 	p =  push
 	pf = push --force-with-lease
 	pn = !git push --set-upstream origin $(git branch --show-current)

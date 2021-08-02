@@ -27,7 +27,6 @@ Plug 'ervandew/supertab'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
-" Let's try polyglot instead?
 Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-markdown'
@@ -40,15 +39,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
 
-Plug 'stephpy/vim-yaml'
-Plug 'xenoterracide/html.vim'
-
 Plug 'vim-airline/vim-airline'
 Plug 'chriskempson/base16-vim' " https://github.com/chriskempson/base16-vim/issues/197
 
-
 " Trying new things
-Plug 'Asheq/close-buffers.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'AndrewRadev/splitjoin.vim'
 

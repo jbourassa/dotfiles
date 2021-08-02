@@ -38,8 +38,6 @@
 	excludesfile = ~/.gitignore
 	commitGraph = true
 	attributesfile = /Users/jimmybourassa/.gitattributes
-[includeIf "gitdir:~/src/github.com/Shopify/"]
-	path = ~/.gitconfig-shopify
 [diff]
 	algorithm = patience
 	noprefix = true
@@ -58,6 +56,7 @@
 	insteadOf = ssh://git@github.com/shopify/
 [commit]
 	gpgsign = true
-[credential]
-	helper = 
-	helper = store --file /opt/dev/var/private/git_credential_store
+[includeIf "gitdir:~/src/github.com/Shopify/"]
+	path = ~/dotfiles/git/gitconfig-shopify
+[includeIf "gitdir:/usr/spin/src/"]
+	path = ~/dotfiles/git/gitconfig-shopify-spin

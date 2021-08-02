@@ -1,0 +1,4 @@
+[credential "https://github.com"]
+	helper = store --file /opt/dev/var/private/git_credential_store
+[user]
+	email = jimmy.bourassa@shopify.com

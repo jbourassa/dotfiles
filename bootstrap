@@ -105,11 +105,11 @@ link_file () {
 install_dotfiles () {
   info 'installing dotfiles'
 
-  #if [ ! -z "$SPIN" ]
-  #then
-    ## Remove Spin's defaults
-    #rm $HOME/{.profile,.zshrc,.gitconfig}
-  #fi
+  if [ ! -z "$SPIN" ]
+  then
+    # Remove Spin's defaults
+    rm -f $HOME/{.profile,.zshrc,.gitconfig}
+  fi
 
   local overwrite_all=false backup_all=false skip_all=false
 

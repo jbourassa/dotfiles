@@ -1,13 +1,9 @@
-# El Capitan, leave my $PATH sailing alone!
-setopt no_global_rcs
-
 export EDITOR='nvim'
 if !command -v nvim &> /dev/null
 then
   echo "nvim not found"
   export EDITOR='vim'
 fi
-
 
 export PATH=$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 

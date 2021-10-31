@@ -48,6 +48,7 @@ setopt share_history          # share command history data
 setopt nobanghist             # disable ! trying to reference histort everywhere
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 gco() {
   local tags branches target

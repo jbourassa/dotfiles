@@ -18,8 +18,10 @@ alias be="bundle exec"
 alias mysql="mysql -u root"
 alias psg="ps aux | grep"
 alias rake="noglob bundled_rake"
-alias rgc="rg --glob='!test' --glob='!spec'"
+alias rgc="rg --glob='!test' --glob='!spec' --glob='!*.test.tsx' --glob='!*test.ts'"
 alias rgt="rg --glob='*_test.rb'"
+alias fork="PINENTRY_USER_DATA='' fork"
+[ -f ~/src/github.com/Shopify/shopify-cli/bin/shopify ] && alias shopify-dev="~/src/github.com/Shopify/shopify-cli/bin/shopify"
 alias fork="PINENTRY_USER_DATA='' fork"
 
 export GPG_TTY=$(tty)

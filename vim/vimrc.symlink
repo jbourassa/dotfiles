@@ -4,7 +4,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Right ENV for shadowenv
-Plug 'Shopify/shadowenv'
+Plug 'Shopify/shadowenv.vim'
 
 Plug 'vim-scripts/bufkill.vim'
 
@@ -55,7 +55,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-set shell=$SHELL\ -l
+set shell=$SHELL
 if has("gui_running")
   "Remove toolbar
   set guioptions-=T

@@ -122,7 +122,12 @@ install_dotfiles () {
   if [ "$(uname -s)" == "Darwin" ]
   then
     mkdir -p "$HOME/.gnupg"
-    link_file "$DOTFILES_ROOT/gnupg/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+    if [[ "$(uname -a)" = *ARM64* ]]
+    then
+      link_file "$DOTFILES_ROOT/gnupg/gpg-agent-arm.conf" "$HOME/.gnupg/gpg-agent.conf"
+    else
+      link_file "$DOTFILES_ROOT/gnupg/gpg-agent-x64.conf" "$HOME/.gnupg/gpg-agent.conf"
+    fi
     link_file "$DOTFILES_ROOT/gnupg/gpg.conf" "$HOME/.gnupg/gpg.conf"
   fi
 
@@ -152,8 +157,6 @@ then
   else
     fail "error setting ubuntu deps"
   fi
-else
-  echo "?????"
 fi
 
 # Pure:

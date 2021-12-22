@@ -1,17 +1,10 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-
-" Right ENV for shadowenv
-Plug 'Shopify/shadowenv.vim'
-
 Plug 'vim-scripts/bufkill.vim'
 
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 Plug 'fboender/bexec'
-Plug 'tpope/vim-fugitive' "Gbrowse
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
@@ -19,71 +12,56 @@ Plug 'tmhedberg/matchit'
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
-Plug 'mattn/emmet-vim'
 Plug 'bronson/vim-visual-star-search'
 
 Plug 'ervandew/supertab'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'tpope/vim-markdown'
-Plug 'machakann/vim-sandwich'
-
 Plug 'tpope/vim-bundler'
-
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
 
-Plug 'vim-airline/vim-airline'
-Plug 'chriskempson/base16-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " Trying new things
 Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim' " gS and gJ
+
+source ~/dotfiles/vim/plugins/airline.vim
+source ~/dotfiles/vim/plugins/nerdtree.vim
+source ~/dotfiles/vim/plugins/coc.vim
+source ~/dotfiles/vim/plugins/vim-sandwich.vim
+" This is promising but it's slower and... doens't feel quite right?
+" source ~/dotfiles/vim/plugins/telescope.vim
+source ~/dotfiles/vim/plugins/bufferline.vim
+source ~/dotfiles/vim/plugins/base16.vim
+source ~/dotfiles/vim/plugins/fzf.vim
+
+" What are the benefits of treesitter for now?
+" source ~/dotfiles/vim/plugins/nvim-treesitter.vim
 
 " What about I learn about vim-textobj-ruby?
-
 " I wanna try this too eventually? moll/vim-bbye
 " With: let g:splitjoin_ruby_curly_braces = 0
-
-
-Plug 'editorconfig/editorconfig-vim'
+"
 call plug#end()
 
 set shell=$SHELL
 if has("gui_running")
-  "Remove toolbar
-  set guioptions-=T
+  set guioptions-=T "Remove toolbar
+  set guifont=DroidSansMono\ Nerd\ Font:h16 " for airline
   " Key for tab navigation
   nmap <silent> <C-Tab> :maca _cycleWindows:<CR>
   nmap <silent> <C-S-Tab> :maca _cycleWindowsBackwards:<CR>
   set balloondelay=100000 " Long balloon to avoir huge tooltip in ruby files
-  set guioptions+=c
 endif
 
-" Color!!!!
 set termguicolors
-" let base16colorspace=256
-colorscheme base16-material-darker
-
-" Tweak color scheme
-function! s:base16_customize() abort
-  hi Comment guifg=#6A6A6A
-  highlight LineNr guibg=NONE
-  " call Base16hi("Comment", "6A6A6A", "", "6A6A6A", "", "", "")
-endfunction
-
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-syntax on
-highlight LineNr guibg=NONE
 
 set nobackup
 set noswapfile
@@ -92,7 +70,6 @@ set nojoinspaces
 set number
 set showmode
 set tabstop=2 shiftwidth=2 softtabstop=2 et
-set hidden
 set linebreak
 
 set wildmenu
@@ -101,20 +78,15 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.DS_Store,*.pyc,
 
 set cursorline
 
-set list listchars=tab:»\ ,trail:·
+set list listchars=tab:»\ ,trail:·,nbsp:+
 
 filetype on
 " filetype plugin indent on
 set backspace=2
 set vb "visual bell
 
-set encoding=utf-8
-set fileencoding=utf-8
-set hlsearch
-set laststatus=2
 set history=100
 set scrolloff=5
-set incsearch
 set ignorecase
 set infercase " Gives case sensitive autocompletion
 set smartcase
@@ -127,17 +99,10 @@ fun! SetupCommandAlias(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfun
 call SetupCommandAlias("W","w")
-call SetupCommandAlias("F","NERDTreeFind")
-
-" Thorfile, Rakefile, Vagrantfile and Gemfile Guardfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
 
 "Key bidings
 let mapleader = ","
 let g:mapleader = ","
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-noremap <silent> <Space> :silent noh<Bar>echo<CR>
-set pastetoggle=<F3>
 
 " nvim changed Y to y$, but old habits die hard
 unmap Y
@@ -151,11 +116,13 @@ noremap <silent> <leader>l :wincmd l<cr>
 "Aaaand around buffers
 nmap <silent> <S-Right> :bnext<CR>
 nmap <silent> <S-Left> :bprevious<CR>
+" ^ OR! v
+nmap <silent> <leader>, :bprevious<CR>
+nmap <silent> <leader>. :bnext<CR>
 
 nmap <Leader>cp :let @*=expand("%")<CR>
 nmap <Leader>cP :let @*=expand("%:p")<CR>
 nmap <Leader>% :let<Space>@*=@%<CR>
-
 " Tab navigation
 noremap <silent> <D-A-Left> :tabp<CR>
 noremap <silent> <D-A-Right> :tabn<CR>
@@ -164,62 +131,16 @@ noremap <silent> <D-A-Right> :tabn<CR>
 vnoremap <Tab> >gv|
 vnoremap <S-Tab> <gv
 
-"Faster prev-buffer
-nnoremap <leader><leader> <c-^>
 nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>q :BD<CR>
 
 "bind BExec plugin to <leader>r (r -> run)
 nmap <silent> <leader>r :call bexec#Normal()<CR>
 vmap <silent> <leader>r :call bexec#Visual()<CR>
 
-" From Drew's workshop, so cool!
+" Drew's workshop: . in visual mode repeats the command on each line
 xnoremap . :norm.<CR>,
 
-"NERDTree
-let NERDTreeIgnore = ['\.pyc$', '\.o$']
-
-"fzf stuff
-nmap <Leader>t :Files<CR>
-nmap <Leader>b :Buffers<CR>
-" nmap <Leader>h :History<CR>
-let $FZF_DEFAULT_COMMAND = 'rg --files --glob="!node_modules/*" --glob="!*.rbi" --glob="!components/platform/test/unit/graph_api/admin/graphql_validation/*"'
-let $FZF_DEFAULT_OPTS = '-i'
-let g:fzf_preview_window = ''
-
-if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --info=inline'
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-endif
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Keyword'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-
-"Unmap some unsued buffer command to use fzf buffers (<Leader>b)
-autocmd VimEnter *  unmap <Leader>bundo
-autocmd VimEnter *  unmap <Leader>bw
-autocmd VimEnter *  unmap <Leader>bb
-autocmd VimEnter *  unmap <Leader>bf
-autocmd VimEnter *  unmap <Leader>bun
-autocmd VimEnter *  unmap <Leader>bd
-autocmd VimEnter *  unmap <Leader>ba
-autocmd VimEnter *  unmap <Leader>bx
-autocmd VimEnter *  unmap <Leader>bc
-autocmd VimEnter *  unmap <Leader>bl
 imap jj <Esc>
 
 set exrc    " enable per-directory .vimrc files
@@ -227,14 +148,6 @@ set secure  " disable unsafe commands in local .vimrc files"
 
 let g:ruby_indent_assignment_style = 'variable'
 let g:ruby_indent_block_style = 'do'
-
-" Airline
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
-let g:airline_powerline_fonts = 1
-set noshowmode " Hide --INSERT-- since it's in airline
-let g:airline#extensions#bufferline#enabled = 0
-let g:airline_section_b = '' " don't care for branch (takes room and is in my terminal)
-let g:airline_section_y = '' " don't care for encoding
 
 let g:snipMate = { 'snippet_version' : 1 } " Get rid of deprecation
 " let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}
@@ -248,63 +161,17 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-function! s:getVisualSelection()
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
+" Allow gf to open non-existent files
+map gf :edit <cfile><cr>
 
-    if len(lines) == 0
-        return ""
-    endif
+" Emacs keybinding in command mode :evil:
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
 
-    let lines[-1] = lines[-1][:column_end - (&selection == "inclusive" ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-
-    return join(lines, "\n")
-endfunction
-
-function! s:toSearchString(str)
-  return substitute(a:str, "::", "/", "g")
-endfunction
-
-vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>toSearchString(<SID>getVisualSelection())<CR><CR>
-nnoremap <silent><leader>f :FZF -q <C-R>=<SID>toSearchString(expand("<cword>"))<CR><CR>
-
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-let g:sandwich#recipes += [
-      \   {
-      \     'buns':     ['<%= ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['='],
-      \     'nesting':  1
-      \   },
-      \   {
-      \     'buns':     ['<% ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['-'],
-      \     'nesting':  1
-      \   },
-      \   {
-      \     'buns':     ['<%# ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['#'],
-      \     'nesting':  1
-      \   }
-      \ ]
-
-" COC
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gc <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"
-command! -bang -nargs=* Rgp
-  \ call fzf#vim#grep(
-  \   'rg --line-number --no-heading --color=always --smart-case '. <q-args>, 1,
-  \   fzf#vim#with_preview({'options': ['--preview-window=up:60%']}), <bang>1)
+doautocmd User PlugLoaded " Configure plugins

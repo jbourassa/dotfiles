@@ -2,3 +2,4 @@
 	helper = store --file /opt/dev/var/private/git_credential_store
 [user]
 	email = jimmy.bourassa@shopify.com
+	signingkey = 98DE31A6AFA19E8B

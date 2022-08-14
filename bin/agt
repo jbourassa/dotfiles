@@ -1,2 +1,0 @@
-#! /usr/bin/env zsh
-ag "([^a-zA-Z]|I18n\.)\s?t(\(| +)['\":]$1"

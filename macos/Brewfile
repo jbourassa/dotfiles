@@ -4,10 +4,8 @@ brew "neovim"
 brew "htop"
 brew "git"
 brew "fzf"
-brew "mycli"
 brew "gnupg"
 brew "pinentry-mac"
-brew "mosh"
 brew "bat"
 brew "htop"
 brew "node"
@@ -23,5 +21,10 @@ cask "tableplus"
 cask "vlc"
 cask "spotify"
 cask "visual-studio-code"
-cask "tuple"
 cask "postman"
+
+# Shopify only
+if ENV["SHOPIFY"]
+  cask "tuple"
+  brew "mycli"
+end

@@ -116,9 +116,6 @@ noremap <silent> <leader>l :wincmd l<cr>
 "Aaaand around buffers
 nmap <silent> <S-Right> :bnext<CR>
 nmap <silent> <S-Left> :bprevious<CR>
-" ^ OR! v
-nmap <silent> <leader>, :bprevious<CR>
-nmap <silent> <leader>. :bnext<CR>
 
 nmap <Leader>cp :let @*=expand("%")<CR>
 nmap <Leader>cP :let @*=expand("%:p")<CR>

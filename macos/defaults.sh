@@ -9,7 +9,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Repeat delay
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # faster key repeat
 defaults write NSGlobalDomain KeyRepeat -int 2
@@ -35,9 +35,11 @@ defaults write com.apple.screencapture disable-shadow -bool true
 sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 
 # My hot corners – tl:appwindowd tr:desktop br:allwindows
-defaults write com.apple.Dock wvous-tr-corner -int 4;
-defaults write com.apple.Dock wvous-br-corner -int 2;
-defaults write com.apple.Dock wvous-tl-corner -int 3;
+defaults write com.apple.dock wvous-br-corner -int 2
+defaults write com.apple.dock wvous-br-modifier -int 0
+defaults write com.apple.dock wvous-tl-corner -int 3
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false

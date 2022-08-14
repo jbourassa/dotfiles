@@ -145,6 +145,7 @@ set secure  " disable unsafe commands in local .vimrc files"
 
 let g:ruby_indent_assignment_style = 'variable'
 let g:ruby_indent_block_style = 'do'
+let g:ruby_indent_hanging_elements = 0
 
 let g:snipMate = { 'snippet_version' : 1 } " Get rid of deprecation
 " let g:ale_linters = {'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop', 'sorbet'], 'elixir': ['mix']}

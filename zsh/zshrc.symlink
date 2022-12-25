@@ -24,7 +24,6 @@ alias fork="PINENTRY_USER_DATA='' fork"
 alias sc='systemctl'
 alias jc='journalctl'
 alias jj='journalctl -f -u'
-[ -f ~/src/github.com/Shopify/shopify-cli/bin/shopify ] && alias shopify-dev="~/src/github.com/Shopify/shopify-cli/bin/shopify"
 
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"

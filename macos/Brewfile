@@ -13,7 +13,6 @@ brew "node"
 cask "firefox"
 cask "google-chrome"
 cask "iterm2"
-cask "macvim"
 cask "1password"
 cask "keepingyouawake"
 cask "fork"
@@ -21,7 +20,6 @@ cask "tableplus"
 cask "vlc"
 cask "spotify"
 cask "visual-studio-code"
-cask "postman"
 
 # Shopify only
 if ENV["SHOPIFY"]

@@ -27,6 +27,7 @@
 	p =  push
 	pf = push --force-with-lease
 	pn = !git push --set-upstream origin $(git branch --show-current)
+	bclean = "!git branch --merged | egrep -v '(^\\*|master|main|dev)' | xargs git branch -d"
 [advice]
 	statusHints = false
 [branch]

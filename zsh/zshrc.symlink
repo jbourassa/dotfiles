@@ -79,4 +79,6 @@ bundlecd() {
   gem_path=$(bundle info --path $1) && cd $gem_path
 }
 
-[[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
+autoload -Uz compinit && compinit
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh

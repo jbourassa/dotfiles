@@ -51,14 +51,8 @@
 	path = ~/dotfiles/git/gitconfig-shopify-spin
 [include]
 	path = /Users/jbourassa/.config/dev/gitconfig
-[gpg]
-	program = /opt/dev/bin/gpg-auto-pin
-
 [credential "https://github.com"]
 	helper = store --file /opt/dev/var/private/git_credential_store
-[user]
-	email = jimmy.bourassa@shopify.com
-	signingkey = 98DE31A6AFA19E8B
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

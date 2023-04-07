@@ -1,15 +1,19 @@
-source ~/dotfiles/zsh/bundler.plugin.zsh
+[[ -f ~/.zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.zsh-snap
 
-fpath+=$HOME/dotfiles/zsh/pure
-PURE_GIT_PULL=0
-autoload -U promptinit; promptinit
-prompt pure
+source ~/.zsh-snap/znap.zsh
+
+znap source zsh-users/zsh-syntax-highlighting
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-completions
+znap prompt sindresorhus/pure
+source ~/dotfiles/zsh/bundler.plugin.zsh
 
 alias l='ls -lGh'
 alias ll='l -a'
 alias g=git
 alias ga='git add'
-alias m=mvim
 alias v=nvim
 alias vim=nvim
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

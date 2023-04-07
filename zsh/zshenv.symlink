@@ -14,3 +14,6 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 export TDD=0
 export ERL_AFLAGS="-kernel shell_history enabled"
+if [ -e /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jbourassa/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export WASM_OPT=/opt/homebrew/bin/wasm-opt

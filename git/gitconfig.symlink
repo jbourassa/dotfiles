@@ -35,31 +35,39 @@
 	sort = -committerdate
 [push]
 	default = tracking
+	autoSetupRemote = true
 [core]
 	excludesfile = ~/.gitignore
-	commitGraph = true
 	attributesfile = /Users/jimmybourassa/.gitattributes
 [diff]
-	algorithm = patience
 	noprefix = true
-[protocol]
-	version = 2
 [remote]
 	pushdefault = origin
-[gpg]
-	program = gpg
-[gc]
-	writeCommitGraph = true
-[url "https://github.com/Shopify/"]
-	insteadOf = git@github.com:Shopify/
-	insteadOf = git@github.com:shopify/
-	insteadOf = ssh://git@github.com/Shopify/
-	insteadOf = ssh://git@github.com/shopify/
 [commit]
 	gpgsign = true
 [includeIf "gitdir:~/src/github.com/Shopify/"]
 	path = ~/dotfiles/git/gitconfig-shopify
 [includeIf "gitdir:/usr/spin/src/"]
 	path = ~/dotfiles/git/gitconfig-shopify-spin
+[include]
+	path = /Users/jbourassa/.config/dev/gitconfig
+[gpg]
+	program = /opt/dev/bin/gpg-auto-pin
+
+[credential "https://github.com"]
+	helper = store --file /opt/dev/var/private/git_credential_store
+[user]
+	email = jimmy.bourassa@shopify.com
+	signingkey = 98DE31A6AFA19E8B
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [init]
 	defaultBranch = main
+[maintenance]
+	repo = /Users/jbourassa/.zsh-snap
+	repo = /Users/jbourassa/dotfiles
+	repo = /Users/jbourassa/pure
+	repo = /Users/jbourassa/zsh-autocomplete

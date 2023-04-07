@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/goyo.vim'
+
 Plug 'vim-scripts/bufkill.vim'
 
 Plug 'preservim/nerdcommenter'
@@ -34,7 +36,7 @@ Plug 'AndrewRadev/splitjoin.vim' " gS and gJ
 
 source ~/dotfiles/vim/plugins/airline.vim
 source ~/dotfiles/vim/plugins/nerdtree.vim
-source ~/dotfiles/vim/plugins/coc.vim
+" source ~/dotfiles/vim/plugins/coc.vim
 source ~/dotfiles/vim/plugins/vim-sandwich.vim
 " This is promising but it's slower and... doens't feel quite right?
 " source ~/dotfiles/vim/plugins/telescope.vim

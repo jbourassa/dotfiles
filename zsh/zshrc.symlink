@@ -41,7 +41,7 @@ bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through
 bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
 
 # History file configuration
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[[ -z "$HISTFILE" ]] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
 
@@ -70,18 +70,13 @@ gco() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
-alias git-clean='git branch --merged | egrep -v "(^\*|master|dev|main)" | xargs git branch -d'
-
 FZF_DEFAULT_OPTS="-i"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 bundlecd() {
-  local path=$(bundle info --path $1)
-
-  if [ -e $path ]; then
-    cd $path
-  fi
+  local gem_path;
+  gem_path=$(bundle info --path $1) && cd $gem_path
 }
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }

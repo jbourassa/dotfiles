@@ -131,8 +131,8 @@ install_dotfiles () {
     link_file "$DOTFILES_ROOT/gnupg/gpg.conf" "$HOME/.gnupg/gpg.conf"
   fi
 
-  mkdir -p "$HOME/.config/nvim"
-  link_file "$DOTFILES_ROOT/vim/init.vim" "$HOME/.config/nvim/init.vim"
+  mkdir -p "$HOME/.config"
+  link_file "$DOTFILES_ROOT/nvim" "$HOME/.config/nvim"
 }
 
 install_dotfiles

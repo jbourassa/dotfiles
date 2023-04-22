@@ -401,7 +401,6 @@ local servers = {
   clangd = {},
   tsserver = {},
   ruby_ls = {},
-  sorbet = {},
   -- standardrb = {},
   rust_analyzer = {},
 

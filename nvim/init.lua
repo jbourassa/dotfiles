@@ -61,7 +61,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -110,6 +110,7 @@ require('lazy').setup({
       options = {
         theme = 'onedark',
       },
+      extensions = {'quickfix', 'nerdtree'},
       sections = { -- reduce the clutter
         lualine_x = {},
         lualine_y = {'filetype'},
@@ -122,10 +123,8 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    main = "ibl",
+    opts = { indent = { char = '┊' } },
   },
 
   -- "gc" to comment visual regions/lines
@@ -249,8 +248,8 @@ vim.keymap.set('n', '<leader>w', ":w<CR>", { desc = "[W]rite file", silent = tru
 -- Close this thing
 vim.keymap.set('n', '<leader>q', ":BD<CR>", { desc = "[Q]uit file", silent = true })
 
-vim.keymap.set('n', '<S-Up>', ":BB<CR>",          { desc = "Back in recent buffers", silent = true })
-vim.keymap.set('n', '<S-Down>', ":BF<CR>",        { desc = "Forward in recent buffers", silent = true })
+vim.keymap.set('n', '<S-Up>', ":BB<CR>",    { desc = "Back in recent buffers", silent = true })
+vim.keymap.set('n', '<S-Down>', ":BF<CR>",  { desc = "Forward in recent buffers", silent = true })
 
 -- Clipboard stuff
 vim.keymap.set('n', '<leader>y', '"+y', { desc = "[Y]ank to system clipboard", silent = true })
@@ -330,8 +329,6 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>f',  require('telescope.builtin').find_files, { desc = '[F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -341,8 +338,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -369,8 +366,8 @@ local on_attach = function(_, bufnr)
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   -- @TODO Do I want those?
-  -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>s', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')

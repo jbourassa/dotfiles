@@ -122,12 +122,7 @@ install_dotfiles () {
   if [ "$(uname -s)" == "Darwin" ]
   then
     mkdir -p "$HOME/.gnupg"
-    if [[ "$(uname -a)" = *ARM64* ]]
-    then
-      link_file "$DOTFILES_ROOT/gnupg/gpg-agent-arm.conf" "$HOME/.gnupg/gpg-agent.conf"
-    else
-      link_file "$DOTFILES_ROOT/gnupg/gpg-agent-x64.conf" "$HOME/.gnupg/gpg-agent.conf"
-    fi
+    link_file "$DOTFILES_ROOT/gnupg/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
     link_file "$DOTFILES_ROOT/gnupg/gpg.conf" "$HOME/.gnupg/gpg.conf"
   fi
 
@@ -146,16 +141,6 @@ then
     success "macOS + apps done"
   else
     fail "error setting up macOS + apps"
-  fi
-fi
-
-if [ ! -z "$SPIN" ]
-then
-  if source ubuntu/install.sh | while read -r data; do info "$data"; done
-  then
-    success "ubuntu deps installed"
-  else
-    fail "error setting ubuntu deps"
   fi
 fi
 

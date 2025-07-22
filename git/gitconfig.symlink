@@ -45,15 +45,6 @@
 	pushdefault = origin
 [commit]
 	gpgsign = true
-[include]
-	path = /Users/jbourassa/.config/dev/gitconfig
-[credential "https://github.com"]
-	helper = store --file /opt/dev/var/private/git_credential_store
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [init]
 	defaultBranch = main
 [maintenance]

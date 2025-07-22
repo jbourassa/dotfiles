@@ -4,9 +4,9 @@ return {
   -- not sure?
   -- dependencies = 'nvim-tree/nvim-web-devicons',
 
-  version = "v4.*",
+  version = "*",
   config = function ()
-    require("bufferline").setup()
+    require("bufferline").setup({})
 
     -- Buffer nav, using bufferline but otherwise :bn / :bp would work
     vim.keymap.set('n', '<S-Right>', ":BufferLineCycleNext<CR>",    { desc = "Next Buffer", silent = true })

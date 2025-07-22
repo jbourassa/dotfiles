@@ -23,11 +23,9 @@ alias mysql="mysql -u root"
 alias psg="ps aux | grep"
 alias rake="noglob bundled_rake"
 alias rgc="rg --glob='!test' --glob='!spec' --glob='!*.test.tsx' --glob='!*test.ts'"
-alias rgt="rg --glob='*_test.rb'"
-alias fork="PINENTRY_USER_DATA='' fork"
-alias sc='systemctl'
-alias jc='journalctl'
-alias jj='journalctl -f -u'
+alias rgt="rg --glob='*_test.rb' --glob='*_spec.rb'"
+alias lg="lazygit"
+alias lgs="lazygit status"
 
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
@@ -79,6 +77,5 @@ bundlecd() {
   gem_path=$(bundle info --path $1) && cd $gem_path
 }
 
+. /opt/homebrew/etc/profile.d/z.sh
 autoload -Uz compinit && compinit
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh

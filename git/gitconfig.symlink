@@ -45,10 +45,6 @@
 	pushdefault = origin
 [commit]
 	gpgsign = true
-[includeIf "gitdir:~/src/github.com/Shopify/"]
-	path = ~/dotfiles/git/gitconfig-shopify
-[includeIf "gitdir:/usr/spin/src/"]
-	path = ~/dotfiles/git/gitconfig-shopify-spin
 [include]
 	path = /Users/jbourassa/.config/dev/gitconfig
 [credential "https://github.com"]

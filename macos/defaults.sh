@@ -27,7 +27,10 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Disable Force click with trackpad (I always hit it by accident)
-defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool false
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+
+# Ctrl-scroll for zooming
+sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle 1
 
 # No shadow in screens
 defaults write com.apple.screencapture disable-shadow -bool true

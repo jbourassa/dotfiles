@@ -15,14 +15,11 @@ cask "google-chrome"
 cask "iterm2"
 cask "1password"
 cask "keepingyouawake"
-cask "fork"
 cask "tableplus"
 cask "vlc"
 cask "spotify"
 cask "visual-studio-code"
 
-# Shopify only
-if ENV["SHOPIFY"]
-  cask "tuple"
-  brew "mycli"
-end
+cask "tuple"
+cask "font-droid-sans-mono-nerd-font"
+cask "obsidian"

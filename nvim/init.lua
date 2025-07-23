@@ -1,10 +1,3 @@
--- TODOs:
---   - Hide the diagnostics info that gets printed in the bottom right corner as I type?
---   - Ruby indent settings? It's pretty odd
---   - ~Window navigation (hjkl)~ (let's try and live without it?)
---   - matchit? or the plugin that inserts the matching paren
---   - nerdtree
---   - √ copy current file path
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
@@ -438,11 +431,9 @@ require('lazy').setup({
       },
     },
   },
+  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  { 'olimorris/onedarkpro.nvim' },
   {
-    'olimorris/onedarkpro.nvim',
-  },
-  {
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()

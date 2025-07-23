@@ -6,18 +6,40 @@ local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 40
 
-config.font_size = 16
+config.font_size = 18
 config.font = wezterm.font 'DroidSansM Nerd Font Mono'
 
-config.color_scheme = 'Tokyo Night'
+config.color_scheme = 'Tokyo Night Moon'
 
 config.window_decorations = "RESIZE"
-config.window_padding =  {
-  left = 8,
-  right = 0,
-  top = 0,
-  bottom = 0,
+local padding = {
+    left = '0.5cell',
+    right = '0.5cell',
+    top = 0,
+    bottom = '0.5cell',
 }
+
+-- To try once this is promoted out of nightly: https://wezterm.org/config/lua/config/window_content_alignment.html
+-- config.window_content_alignment = {
+--   horizontal = 'Center',
+--   vertical = 'Center',
+-- }
+
+wezterm.on('update-status', function(window, pane)
+    local overrides = window:get_config_overrides() or {}
+    if string.find(pane:get_title(), '.*nvim.*') then
+        overrides.window_padding = {
+            left = 0,
+            right = 0,
+            top = 0,
+            bottom = 0
+        }
+    else
+        overrides.window_padding = padding
+    end
+    window:set_config_overrides(overrides)
+end)
+
 config.use_resize_increments = true
 
 config.window_frame = {
@@ -51,3 +73,5 @@ config.keys = {
 }
 
 return config
+
+-- vim: ft=lua

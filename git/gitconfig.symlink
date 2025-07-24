@@ -6,7 +6,7 @@
 [user]
 	email = jbourassa@gmail.com
 	name = Jimmy Bourassa
-	signingkey = F1C9A814676E523305D759CDA3ADC169E5DA6798
+	signingkey = ~/.ssh/id_ed25519.pub
 [alias]
 	main = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	a = add
@@ -52,3 +52,5 @@
 	repo = /Users/jbourassa/dotfiles
 	repo = /Users/jbourassa/pure
 	repo = /Users/jbourassa/zsh-autocomplete
+[gpg]
+	format = ssh

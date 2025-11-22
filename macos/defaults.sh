@@ -64,3 +64,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Swiping doesn't back/forward in browser
 defaults write .GlobalPreferences AppleEnableSwipeNavigateWithScrolls 0
+
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/dotfiles/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true

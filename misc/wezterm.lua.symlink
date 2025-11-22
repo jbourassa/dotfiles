@@ -9,16 +9,24 @@ config.initial_rows = 40
 config.font_size = 18
 config.font = wezterm.font 'DroidSansM Nerd Font Mono'
 
-config.scrollback_lines = 10000
+config.scrollback_lines = 100000
 
 config.quit_when_all_windows_are_closed = false;
 
 config.color_scheme = 'Tokyo Night Moon'
 
+local theme = wezterm.get_builtin_color_schemes()[config.color_scheme]
+theme.scrollbar_thumb = '#393939'
+config.color_schemes = {
+  ['Tokyo Night Moon'] = theme
+}
+
+config.enable_scroll_bar = true
+
 config.window_decorations = "RESIZE"
-local padding = {
+config.window_padding = {
     left = '0.5cell',
-    right = '0.5cell',
+    right = '1 cell',
     top = 0,
     bottom = '0.5cell',
 }
@@ -29,20 +37,23 @@ local padding = {
 --   vertical = 'Center',
 -- }
 
-wezterm.on('update-status', function(window, pane)
-    local overrides = window:get_config_overrides() or {}
-    if string.find(pane:get_title(), '.*nvim.*') then
-        overrides.window_padding = {
-            left = 0,
-            right = 0,
-            top = 0,
-            bottom = 0
-        }
-    else
-        overrides.window_padding = padding
-    end
-    window:set_config_overrides(overrides)
-end)
+-- Nice idea, but in practice the flickering makes this annoying
+-- wezterm.on('update-status', function(window, pane)
+--     local overrides = window:get_config_overrides() or {}
+--     if string.find(pane:get_title(), '.*nvim.*') then
+--         overrides.window_padding = {
+--             left = 0,
+--             right = 0,
+--             top = 0,
+--             bottom = 0
+--         }
+--         config.enable_scroll_bar = false
+--     else
+--         overrides.window_padding = padding
+--         config.enable_scroll_bar = true
+--     end
+--     window:set_config_overrides(overrides)
+-- end)
 
 config.use_resize_increments = true
 

@@ -52,9 +52,6 @@ setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 setopt nobanghist             # disable ! trying to reference histort everywhere
 
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 gco() {
   local tags branches target
   branches=$(
@@ -77,9 +74,9 @@ bundlecd() {
   gem_path=$(bundle info --path $1) && cd $gem_path
 }
 
-autoload -Uz compinit && compinit
-alias ma="~/.local/bin/mise exec ruby -- ~/src/ma/exe/ma"
+[ -f $XDG_CONFIG_HOME/.missive ] && source ~/dotfiles/zsh/missive.zshrc
 
 eval "$(zoxide init zsh)"
 alias cd=z
-eval "$(~/.local/bin/mise activate zsh)"
+
+autoload -Uz compinit && compinit

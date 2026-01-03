@@ -5,15 +5,9 @@ then
   export EDITOR='vim'
 fi
 
-export PATH=$HOME/dotfiles/bin:$PATH:/usr/local/bin:/usr/local/sbin
-
-export WASMTIME_HOME="$HOME/.wasmtime"
-export PATH="$WASMTIME_HOME/bin:$PATH"
-
-export GOPATH=$HOME
-export PATH=$GOPATH/bin:$PATH
-
+export PATH=$HOME/dotfiles/bin:$PATH
+export LESS='-iR --hilite-search'
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
-
-export ERL_AFLAGS="-kernel shell_history enabled"
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+eval "$(~/.local/bin/mise activate zsh)"

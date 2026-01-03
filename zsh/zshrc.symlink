@@ -2,7 +2,11 @@
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/.zsh-snap
 
-eval "$(starship init zsh)"
+if [[ $TERM != dumb ]]; then
+  eval "$(starship init zsh)"
+else
+  export _ZO_DOCTOR=0
+fi
 
 source ~/.zsh-snap/znap.zsh
 znap source zsh-users/zsh-syntax-highlighting

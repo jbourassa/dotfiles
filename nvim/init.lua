@@ -642,21 +642,6 @@ vim.keymap.set('n', '<Leader>cp', ':let @*=expand("%")<CR>',   { desc = "[C]opy 
 vim.keymap.set('n', '<Leader>cP', ':let @*=expand("%:p")<CR>', { desc = "[C]opy absolute [P]ath" })
 -- vim.keymap.set('n', <Leader>% :let<Space>@*=@%<CR>
 
-if vim.env.SPIN then
-  vim.g.clipboard = {
-    name = 'pbcopy',
-    copy = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    paste = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    cache_enabled = 1,
-  }
-end
-
 -- Indent with tab in visual mode
 vim.keymap.set('v', '<Tab>', '>gv|')
 vim.keymap.set('v', '<S-Tab>', '<gv')

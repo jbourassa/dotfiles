@@ -72,16 +72,14 @@ FZF_DEFAULT_OPTS="-i"
 source <(fzf --zsh)
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
-# chruby
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-
 bundlecd() {
   local gem_path;
   gem_path=$(bundle info --path $1) && cd $gem_path
 }
 
 autoload -Uz compinit && compinit
+alias ma="~/.local/bin/mise exec ruby -- ~/src/ma/exe/ma"
 
 eval "$(zoxide init zsh)"
 alias cd=z
+eval "$(~/.local/bin/mise activate zsh)"

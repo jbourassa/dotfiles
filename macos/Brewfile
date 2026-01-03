@@ -9,6 +9,7 @@ brew "pinentry-mac"
 brew "bat"
 brew "htop"
 brew "node"
+brew "zoxide"
 
 cask "firefox"
 cask "google-chrome"

@@ -82,3 +82,6 @@ bundlecd() {
 }
 
 autoload -Uz compinit && compinit
+
+eval "$(zoxide init zsh)"
+alias cd=z

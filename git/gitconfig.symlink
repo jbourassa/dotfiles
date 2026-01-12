@@ -54,3 +54,8 @@
 	repo = /Users/jbourassa/zsh-autocomplete
 [gpg]
 	format = ssh
+
+[includeIf "hasconfig:remote.*.url:git@github.com:missive/**"]
+  path = ~/dotfiles/.gitconfig.missive
+[includeIf "hasconfig:remote.*.url:git@github.com:heliom/**"]
+  path = ~/dotfiles/.gitconfig.missive

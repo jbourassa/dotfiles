@@ -3,3 +3,4 @@ node_modules/
 .vimrc
 .idea
 !.github/
+.claude/settings.local.json

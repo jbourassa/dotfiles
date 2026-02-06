@@ -1,6 +1,6 @@
 # vi: ft=zsh
 
-alias ma="~/.local/bin/mise exec ruby -- ~/src/ma/exe/ma"
+alias ma="MA_UPDATE=1 ~/.local/bin/mise exec ruby@$(cat ~/.ruby-version) -- ~/src/ma/exe/ma"
 
 # AWS_PROFILE
 store_aws_profile() { echo $1 > ~/.aws__profile }
@@ -20,5 +20,7 @@ test -e ~/.aws__profile && apply_aws_profile
 export PATH="/opt/homebrew/opt/file-formula/bin:$PATH"
 
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+export SKIP_COVERAGE=1
 
 eval "$(nodenv init - --no-rehash zsh)"
